@@ -1,11 +1,57 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import products, { categories } from '../data/products';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const featuredProducts = products.slice(0, 3);
 ---
 
 <Layout>
-	<Welcome />
+  <!-- Hero Section -->
+  <div class="hero min-h-[50vh] bg-base-200">
+    <div class="hero-content text-center">
+      <div class="max-w-md">
+        <h1 class="text-5xl font-bold">JONETEC</h1>
+        <p class="py-6">Innovative Industrial Solutions for a Better Future.</p>
+        <a href="/products" class="btn btn-primary">Our Products</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Categories -->
+  <section class="container mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-center mb-8">Our Product Lines</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      {Object.entries(categories).map(([name, data]) => (
+        <a href={`/products/${name.toLowerCase()}`} class="card bg-base-100 shadow-xl image-full hover:scale-105 transition-transform duration-300">
+          <figure><img src={data.image} alt={name} /></figure>
+          <div class="card-body justify-center items-center text-center">
+            <h2 class="card-title text-3xl text-white">{name}</h2>
+            <p class="text-white/80">{data.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="bg-base-200 py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">Why Jonetec?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div>
+          <h3 class="text-xl font-bold mb-2">High Efficiency</h3>
+          <p>Optimized performance for industrial needs.</p>
+        </div>
+        <div>
+            <h3 class="text-xl font-bold mb-2">Durability</h3>
+            <p>Built to last in harsh environments.</p>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Support</h3>
+            <p>24/7 technical support for our clients.</p>
+          </div>
+      </div>
+    </div>
+  </section>
 </Layout>

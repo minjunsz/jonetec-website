@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import KakaoMap from '../components/KakaoMap.astro';
+---
+
+<Layout>
+  <div class="container mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold text-center mb-8">About Us</h1>
+    
+    <div class="prose max-w-none mb-16 px-4">
+      <h2 class="text-center">CEO Message</h2>
+      <p class="text-center max-w-2xl mx-auto">
+        Welcome to Jonetec. Since our establishment, we have been dedicated to providing the best industrial solutions.
+        Our commitment to quality and innovation drives us forward.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <section class="py-8">
+        <h2 class="text-2xl font-bold text-center mb-8">Location</h2>
+        <div class="flex justify-center">
+            <KakaoMap />
+        </div>
+        <p class="text-center mt-4 text-gray-600">
+            Address: 123 Industrial Park Road, Tech City<br>
+            Tel: 02-123-4567
+        </p>
+    </section>
+  </div>
+</Layout>

@@ -1,0 +1,34 @@
+
+> frontend@0.0.1 build
+> astro build
+
+[2m04:35:05[22m [34m[content][39m Syncing content
+[2m04:35:05[22m [34m[content][39m Synced content
+[2m04:35:05[22m [34m[types][39m Generated [2m196ms[22m
+[2m04:35:05[22m [34m[build][39m output: [34m"static"[39m
+[2m04:35:05[22m [34m[build][39m mode: [34m"static"[39m
+[2m04:35:05[22m [34m[build][39m directory: [34mC:\Users\minju\Documents\codes\homepage\frontend\dist\[39m
+[2m04:35:05[22m [34m[build][39m Collecting build info...
+[2m04:35:05[22m [34m[build][39m [32m✓ Completed in 205ms.[39m
+[2m04:35:05[22m [34m[build][39m Building static entrypoints...
+[31m[1m04:35:05[22m [ERROR] [vite][39m [31m✗[39m Build failed in 212ms
+src/data/products.yaml (2:4): Expected ';', '}' or <eof> (Note that you need plugins to import files that are not JavaScript)
+file: C:/Users/minju/Documents/codes/homepage/frontend/src/data/products.yaml:2:4
+
+1: 
+2: - id: "series-a-100"
+       ^
+3:   category: "Industrial"
+4:   name: "Industrial Pump A-100"
+
+  [1mLocation:[22m
+    [4mC:/Users/minju/Documents/codes/homepage/frontend/src/data/products.yaml:2:4[24m
+  [1mStack trace:[22m
+[2m    at getRollupError (file:///C:/Users/minju/Documents/codes/homepage/frontend/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at convertNode (file:///C:/Users/minju/Documents/codes/homepage/frontend/node_modules/rollup/dist/es/shared/node-entry.js:16352:10)
+    at Module.setSource (file:///C:/Users/minju/Documents/codes/homepage/frontend/node_modules/rollup/dist/es/shared/node-entry.js:17352:24)[22m
+  [1mCaused by:[22m
+[2m  Expected ';', '}' or <eof>
+    at getRollupError (file:///C:/Users/minju/Documents/codes/homepage/frontend/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at convertNode (file:///C:/Users/minju/Documents/codes/homepage/frontend/node_modules/rollup/dist/es/shared/node-entry.js:16352:10)
+    at Module.setSource (file:///C:/Users/minju/Documents/codes/homepage/frontend/node_modules/rollup/dist/es/shared/node-entry.js:17352:24)[22m

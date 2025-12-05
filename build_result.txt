@@ -1,0 +1,37 @@
+
+> frontend@0.0.1 build
+> astro build
+
+[2m04:36:06[22m [34m[content][39m Syncing content
+[2m04:36:06[22m [34m[content][39m Synced content
+[2m04:36:06[22m [34m[types][39m Generated [2m191ms[22m
+[2m04:36:06[22m [34m[build][39m output: [34m"static"[39m
+[2m04:36:06[22m [34m[build][39m mode: [34m"static"[39m
+[2m04:36:06[22m [34m[build][39m directory: [34mC:\Users\minju\Documents\codes\homepage\frontend\dist\[39m
+[2m04:36:06[22m [34m[build][39m Collecting build info...
+[2m04:36:06[22m [34m[build][39m [32m✓ Completed in 201ms.[39m
+[2m04:36:06[22m [34m[build][39m Building static entrypoints...
+/*! 🌼 daisyUI  */
+Found 1 warning while optimizing generated CSS:
+
+[2m│ }[22m
+[2m│ @layer base {[22m
+[2m│[22m   @property --radialprogress {
+[2m┆[22m            [33m[2m^--[22m Unknown at rule: @property[39m
+[2m┆[22m
+[2m│     syntax: "<percentage>";[22m
+[2m│     inherits: true;[22m
+
+[33m[1m04:36:08[22m [WARN] [vite][39m [33m"matchHostname", "matchPathname", "matchPort" and "matchProtocol" are imported from external module "@astrojs/internal-helpers/remote" but never used in "node_modules/astro/dist/assets/utils/remotePattern.js".[39m
+[2m04:36:08[22m [34m[vite][39m [32m✓ built in 1.32s[39m
+[2m04:36:08[22m [34m[build][39m [32m✓ Completed in 1.34s.[39m
+
+[42m[30m generating static routes [39m[49m
+[2m04:36:08[22m [32m▶[39m src/pages/about.astro
+[2m04:36:08[22m   [34m└─[39m [2m/about/index.html[22mHeader is not defined
+  [1mStack trace:[22m
+[2m    at file:///C:/Users/minju/Documents/codes/homepage/frontend/dist/chunks/Layout_haL_Qayy.mjs:7:3
+    at AstroComponentInstance.init (file:///C:/Users/minju/Documents/codes/homepage/frontend/dist/chunks/astro/server_Dlnhfi53.mjs:1559:29)
+    at Object.render (file:///C:/Users/minju/Documents/codes/homepage/frontend/dist/chunks/astro/server_Dlnhfi53.mjs:1958:23)
+    at file:///C:/Users/minju/Documents/codes/homepage/frontend/dist/chunks/astro/server_Dlnhfi53.mjs:1076:18
+    at createBufferedRenderer (file:///C:/Users/minju/Documents/codes/homepage/frontend/dist/chunks/astro/server_Dlnhfi53.mjs:914:10)[22m

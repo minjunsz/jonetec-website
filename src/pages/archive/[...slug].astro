@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('archive');
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: post,
+	}));
+}
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout>
+    <div class="container mx-auto px-4 py-16">
+        <div class="max-w-3xl mx-auto">
+            <a href="/archive" class="btn btn-ghost mb-8">← Back to Archive</a>
+            
+            <header class="mb-8 border-b pb-8">
+                <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>
+                <p class="text-xl text-gray-600 mb-4">{post.data.description}</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-500">{post.data.pubDate.toLocaleDateString()}</span>
+                    {post.data.fileUrl && (
+                        <a href={post.data.fileUrl} class="btn btn-primary" download>Download File</a>
+                    )}
+                </div>
+            </header>
+
+            <article class="prose lg:prose-xl max-w-none">
+                <Content />
+            </article>
+        </div>
+    </div>
+</Layout>

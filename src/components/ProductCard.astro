@@ -1,0 +1,17 @@
+---
+const { id, name, summary, image, category } = Astro.props;
+---
+
+<a href={`/products/${id}`} class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300">
+  <figure class="px-5 pt-5">
+    <img src={image || "https://placehold.co/400x300?text=No+Image"} alt={name} class="rounded-xl object-cover h-48 w-full" />
+  </figure>
+  <div class="card-body items-center text-center">
+    <div class="badge badge-outline mb-2">{category}</div>
+    <h2 class="card-title">{name}</h2>
+    <p class="text-sm text-gray-500 line-clamp-2">{summary}</p>
+    <div class="card-actions mt-4">
+      <button class="btn btn-primary btn-sm">View Details</button>
+    </div>
+  </div>
+</a>
