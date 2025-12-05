@@ -26,7 +26,7 @@ export interface Product {
     name: string;
     summary: string;
     description: string;
-    images: string[];
+    image: string;
     specs?: { label: string; value: string }[];
 }
 
@@ -39,7 +39,7 @@ const products: Product[] = [
         description: `This is the flagship product of Jonetec. 
 It features high durability and easy maintenance.
 Perfect for large scale factories.`,
-        images: ["/images/products/a100-main.jpg"],
+        image: "https://www.masteco.co.kr/assets/images/main/section_2_img_2.jpg",
         specs: [
             { label: "Size", value: "500x500mm" },
             { label: "Power", value: "220V" }
@@ -51,7 +51,7 @@ Perfect for large scale factories.`,
         name: "Commercial Pump B-200",
         summary: "Compact and silent pump for commercial buildings.",
         description: `Designed for noise-sensitive environments using our proprietary silent technology.`,
-        images: [],
+        image: "",
         specs: [
             { label: "Size", value: "300x300mm" },
             { label: "Noise", value: "3dB" }
