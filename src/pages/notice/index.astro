@@ -8,32 +8,65 @@ const notices = (await getCollection('notice')).sort(
 ---
 
 <Layout>
-  <div class="container mx-auto px-4 py-16">
+  <div class="container mx-auto px-4 py-16 max-w-6xl">
     <h1 class="text-4xl font-bold text-center mb-12">Notice</h1>
     
+    <!-- Search Bar -->
+    <div class="flex justify-end mb-4">
+      <label class="input input-bordered flex items-center gap-2">
+        <input type="text" id="searchInput" class="grow" placeholder="Search" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70"><path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" /></svg>
+      </label>
+    </div>
+
     <div class="overflow-x-auto">
-      <table class="table">
+      <table class="table" id="noticeTable">
         <thead>
-          <tr>
-            <th>Date</th>
+          <tr class="bg-base-200">
+            <th class="w-16 text-center">No.</th>
             <th>Title</th>
-            <th>Author</th>
+            <th class="w-32 text-center">Date</th>
           </tr>
         </thead>
         <tbody>
-          {notices.map((notice) => (
+          {notices.map((notice, index) => (
             <tr class="hover">
-              <td>{notice.data.pubDate.toLocaleDateString()}</td>
+              <td class="text-center">{notices.length - index}</td>
               <td>
-                <a href={`/notice/${notice.slug}`} class="link link-hover font-bold">
+                <a href={`/notice/${notice.slug}`} class="link link-hover">
                     {notice.data.title}
                 </a>
               </td>
-              <td>{notice.data.author}</td>
+              <td class="text-center">{notice.data.pubDate.toLocaleDateString()}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
+
+    <script>
+      const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+      const table = document.getElementById('noticeTable') as HTMLTableElement;
+      
+      if (searchInput && table) {
+        const rows = table.getElementsByTagName('tr');
+
+        searchInput.addEventListener('keyup', () => {
+          const filter = searchInput.value.toLowerCase();
+
+          for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header
+            const titleCell = rows[i].getElementsByTagName('td')[1];
+            if (titleCell) {
+              const txtValue = titleCell.textContent || titleCell.innerText;
+              if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                rows[i].style.display = "";
+              } else {
+                rows[i].style.display = "none";
+              }
+            }       
+          }
+        });
+      }
+    </script>
   </div>
 </Layout>

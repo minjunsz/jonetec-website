@@ -1,11 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import products, { categories } from '../../data/products';
+import { getCollection } from 'astro:content';
+import { categories } from '../../data/products'; // Keep categories for filter buttons
 
-// Get unique categories
-
-const filteredProducts = products;
+const products = await getCollection('products');
+const filteredProducts = products.map(p => ({ ...p.data, id: p.id })); // Flatten structure for ProductCard or update ProductCard
+// Actually, better to pass the whole object or adapt ProductCard.
+// Let's adapt filteredProducts to match what ProductCard expects.
+// ProductCard expects: id, name, summary, image, category.
+// Collection entry: { id, data: { name, ... } }
 ---
 
 <Layout>
@@ -25,7 +29,13 @@ const filteredProducts = products;
     <!-- Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {filteredProducts.map((product) => (
-        <ProductCard {...product} />
+        <ProductCard 
+            id={product.id} 
+            name={product.name} 
+            summary={product.summary} 
+            image={product.image} 
+            category={product.category} 
+        />
       ))}
     </div>
     

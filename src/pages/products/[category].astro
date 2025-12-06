@@ -1,9 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import products, { categories } from '../../data/products';
+import { getCollection } from 'astro:content';
+import { categories } from '../../data/products';
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
   return Object.keys(categories).map(cat => ({
     params: { category: cat.toLowerCase() },
     props: { categoryName: cat }
@@ -13,7 +14,10 @@ export function getStaticPaths() {
 const { category } = Astro.params;
 const { categoryName } = Astro.props;
 
-const filteredProducts = products.filter(p => p.category.toLowerCase() === category);
+const allProducts = await getCollection('products');
+const filteredProducts = allProducts
+    .filter(p => p.data.category.toLowerCase() === category)
+    .map(p => ({ ...p.data, id: p.id })); // Adapt for ProductCard
 ---
 
 <Layout>
@@ -33,7 +37,13 @@ const filteredProducts = products.filter(p => p.category.toLowerCase() === categ
     <!-- Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {filteredProducts.map((product) => (
-        <ProductCard {...product} />
+        <ProductCard 
+            id={product.id} 
+            name={product.name} 
+            summary={product.summary} 
+            image={product.image} 
+            category={product.category} 
+        />
       ))}
     </div>
     

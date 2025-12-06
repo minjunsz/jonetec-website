@@ -5,6 +5,8 @@
     themes: corporate;
 }
 
+@plugin "@tailwindcss/typography";
+
 @theme {
     --font-sans: "Noto Sans KR", "Inter", ui-sans-serif, system-ui, sans-serif;
 }
