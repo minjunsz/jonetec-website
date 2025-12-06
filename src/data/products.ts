@@ -28,6 +28,7 @@ export interface Product {
     description: string;
     image: string;
     specs?: { label: string; value: string }[];
+    additionalDescription?: string;
 }
 
 const products: Product[] = [
@@ -42,8 +43,12 @@ Perfect for large scale factories.`,
         image: "https://www.masteco.co.kr/assets/images/main/section_2_img_2.jpg",
         specs: [
             { label: "Size", value: "500x500mm" },
-            { label: "Power", value: "220V" }
-        ]
+            { label: "Power", value: "220V" },
+        ],
+        additionalDescription: `• Warranty: 2 years included
+• Certification: ISO 9001, CE Certified
+• Delivery: Ships within 5 business days
+• Installation: Professional installation required`,
     },
     {
         id: "series-b-200",
