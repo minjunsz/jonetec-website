@@ -11,13 +11,21 @@ const archives = (await getCollection('archive')).sort(
   <div class="container mx-auto px-4 py-16">
     <h1 class="text-4xl font-bold text-center mb-12">Archive (Data Room)</h1>
     
-    <div class="grid gap-4">
+    <!-- Search Bar -->
+    <div class="flex justify-end mb-8">
+      <label class="input input-bordered flex items-center gap-2">
+        <input type="text" id="searchInput" class="grow" placeholder="Search" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70"><path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" /></svg>
+      </label>
+    </div>
+
+    <div class="grid gap-4" id="archiveGrid">
         {archives.map((item) => (
-            <div class="card bg-base-200 shadow-sm hover:bg-base-300 transition-colors">
+            <div class="card bg-base-200 shadow-sm hover:bg-base-300 transition-colors archive-item">
                 <div class="card-body">
                     <div class="flex justify-between items-start">
                         <div>
-                            <a href={`/archive/${item.slug}`} class="card-title hover:underline">
+                            <a href={`/archive/${item.slug}`} class="card-title hover:underline archive-title">
                                 {item.data.title}
                             </a>
                             <p class="text-sm text-gray-500 mt-1">{item.data.pubDate.toLocaleDateString()}</p>
@@ -31,5 +39,30 @@ const archives = (await getCollection('archive')).sort(
             </div>
         ))}
     </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+        const grid = document.getElementById('archiveGrid');
+
+        if (searchInput && grid) {
+            const items = grid.getElementsByClassName('archive-item');
+
+            searchInput.addEventListener('keyup', () => {
+                const filter = searchInput.value.toLowerCase();
+
+                for (let i = 0; i < items.length; i++) {
+                    const titleElement = items[i].getElementsByClassName('archive-title')[0];
+                    if (titleElement) {
+                        const txtValue = titleElement.textContent || titleElement.innerText;
+                        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                            (items[i] as HTMLElement).style.display = "";
+                        } else {
+                            (items[i] as HTMLElement).style.display = "none";
+                        }
+                    }
+                }
+            });
+        }
+    </script>
   </div>
 </Layout>
