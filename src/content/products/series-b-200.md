@@ -1,5 +1,5 @@
 ---
-category: "Commercial"
+category: "분진폭발 방지 시스템"
 name: "Commercial Pump B-200"
 summary: "Compact and silent pump for commercial buildings."
 image: ""

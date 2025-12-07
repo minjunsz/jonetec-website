@@ -5,11 +5,23 @@ import { getCollection } from 'astro:content';
 import { categories } from '../../data/products'; // Keep categories for filter buttons
 
 const products = await getCollection('products');
-const filteredProducts = products.map(p => ({ ...p.data, id: p.id })); // Flatten structure for ProductCard or update ProductCard
-// Actually, better to pass the whole object or adapt ProductCard.
-// Let's adapt filteredProducts to match what ProductCard expects.
-// ProductCard expects: id, name, summary, image, category.
-// Collection entry: { id, data: { name, ... } }
+
+const categoryKeys = Object.keys(categories);
+// Flatten and sort
+const filteredProducts = products
+    .map(p => ({ ...p.data, id: p.id }))
+    .sort((a, b) => {
+        const catIndexA = categoryKeys.indexOf(a.category);
+        const catIndexB = categoryKeys.indexOf(b.category);
+        
+        // 1. Sort by Category Order defined in products.ts
+        if (catIndexA !== catIndexB) {
+            return catIndexA - catIndexB;
+        }
+        
+        // 2. Sort by Name alphabetically within same category
+        return a.name.localeCompare(b.name);
+    });
 ---
 
 <Layout title="제이원텍(주) | 제품 소개" description="제이원텍(주) 제품 소개">

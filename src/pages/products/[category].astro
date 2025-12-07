@@ -17,7 +17,8 @@ const { categoryName } = Astro.props;
 const allProducts = await getCollection('products');
 const filteredProducts = allProducts
     .filter(p => p.data.category.toLowerCase() === category)
-    .map(p => ({ ...p.data, id: p.id })); // Adapt for ProductCard
+    .map(p => ({ ...p.data, id: p.id }))
+    .sort((a, b) => a.name.localeCompare(b.name)); // Sort by name alphabetically
 ---
 
 <Layout title={`제이원텍(주) | ${categoryName}`} description="제이원텍(주) 제품 소개">
