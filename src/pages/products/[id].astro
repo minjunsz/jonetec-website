@@ -17,7 +17,7 @@ const { Content } = await render(product);
 const parsedDescription = await marked.parse(product.data.description);
 ---
 
-<Layout>
+<Layout title={`${product.data.name}`} description={`제이원텍(주)|${product.data.name}`}>
   <div class="container mx-auto px-4 py-8">
     <a href="/products" class="btn btn-ghost mb-8">← Back to List</a>
     
