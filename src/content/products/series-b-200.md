@@ -22,3 +22,16 @@ Our B-200 series uses advanced magnetic levitation to reduce friction and noise.
 - Libraries
 - Hospitals
 - Office Complexes
+
+
+| Header 1 | Header 2 | Header 3 |
+| :------- | :------: | -------: |
+| Left     | Center   | Right    |
+| Data A   | Data B   | Data C   |
+| Row 3    | Example  | Content  |
+
+| Month    | Savings |
+| -------- | ------- |
+| January  | $250    |
+| February | $80     |
+| March    | $420    |
