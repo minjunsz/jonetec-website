@@ -1,11 +1,14 @@
 ---
 
 ---
+
 <div class="bg-base-100 shadow-sm sticky top-0 z-50">
   <div class="navbar container mx-auto px-4">
     <!-- Navbar Start: Logo -->
     <div class="navbar-start">
-      <a href="/" class="btn btn-ghost text-2xl font-bold tracking-tight">JONETEC</a>
+      <a href="/" class="btn btn-ghost">
+        <img src="/jonetec_logo.png" alt="JONETEC Logo" class="h-10 w-auto" />
+      </a>
     </div>
 
     <!-- Navbar End: Menus -->
@@ -18,7 +21,9 @@
           <li>
             <details>
               <summary>고객지원</summary>
-              <ul class="p-2 bg-base-100 rounded-t-none z-10 w-40 shadow-lg right-0 text-base">
+              <ul
+                class="p-2 bg-base-100 rounded-t-none z-10 w-40 shadow-lg right-0 text-base"
+              >
                 <li><a href="/notice">공지사항</a></li>
                 <li><a href="/archive">자료실</a></li>
               </ul>
@@ -30,9 +35,23 @@
       <!-- Mobile Dropdown -->
       <div class="dropdown dropdown-end lg:hidden">
         <div tabindex="0" role="button" class="btn btn-ghost">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h8m-8 6h16"></path></svg
+          >
         </div>
-        <ul tabindex="0" class="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        <ul
+          tabindex="0"
+          class="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+        >
           <li><a href="/about">회사 소개</a></li>
           <li><a href="/products">제품 소개</a></li>
           <li>
