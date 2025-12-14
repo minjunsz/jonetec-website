@@ -1,8 +1,7 @@
 ---
 title: 'Website Launch'
-pubDate: 2024-01-01
+pubDate: 2025-12-15
 description: 'We have launched our new official website.'
-author: 'Admin'
 ---
 
 # Welcome to Jonetec
