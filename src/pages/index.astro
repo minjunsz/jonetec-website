@@ -1,7 +1,7 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ProductCard from '../components/ProductCard.astro';
-import products, { categories } from '../data/products';
+import Layout from "../layouts/Layout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { categories } from "../data/products";
 ---
 
 <Layout>
@@ -11,19 +11,23 @@ import products, { categories } from '../data/products';
   <div class="hero min-h-[60vh] bg-base-200 relative">
     <!-- Carousel Background -->
     <div id="hero-carousel" class="carousel w-full h-full absolute inset-0">
-      
       <!-- Slide 1 -->
       <div id="hero-slide1" class="carousel-item relative w-full h-full">
-        <img src="/images/hero/hero-bg.png" class="w-full h-full object-cover" />
+        <img
+          src="/images/hero/hero-bg.png"
+          class="w-full h-full object-cover"
+        />
       </div>
 
       <!-- Slide 2 -->
       <div id="hero-slide2" class="carousel-item relative w-full h-full">
-        <img src="/images/hero/hero-bg-2.png" class="w-full h-full object-cover" />
+        <img
+          src="/images/hero/hero-bg-2.png"
+          class="w-full h-full object-cover"
+        />
       </div>
-
     </div>
-    
+
     <!-- Overlay -->
     <div class="hero-overlay z-10"></div>
 
@@ -31,34 +35,49 @@ import products, { categories } from '../data/products';
     <div class="hero-content text-center text-neutral-content relative z-20">
       <div class="max-w-md">
         <h1 class="mb-5 text-5xl font-bold text-white">JONETEC</h1>
-        <p class="mb-5 text-white">Innovative Industrial Solutions for a Better Future.</p>
+        <p class="mb-5 text-white">
+          Innovative Industrial Solutions for a Better Future.
+        </p>
         <a href="/products" class="btn btn-primary">제품 보기</a>
       </div>
     </div>
 
     <!-- Carousel Navigation (z-30 to be above overlay and content) -->
-    <div class="absolute left-2 right-2 md:left-5 md:right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-30">
-      <button id="carousel-prev" class="btn btn-circle btn-ghost text-white text-2xl">❮</button>
-      <button id="carousel-next" class="btn btn-circle btn-ghost text-white text-2xl">❯</button>
+    <div
+      class="absolute left-2 right-2 md:left-5 md:right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-30"
+    >
+      <button
+        id="carousel-prev"
+        class="btn btn-circle btn-ghost text-white text-2xl">❮</button
+      >
+      <button
+        id="carousel-next"
+        class="btn btn-circle btn-ghost text-white text-2xl">❯</button
+      >
     </div>
   </div>
 
   <script>
     // Dynamic Carousel Controller
-    const carousel = document.getElementById('hero-carousel');
-    const slides = carousel?.querySelectorAll('.carousel-item') || [];
-    const prevBtn = document.getElementById('carousel-prev');
-    const nextBtn = document.getElementById('carousel-next');
+    const carousel = document.getElementById("hero-carousel");
+    const slides = carousel?.querySelectorAll(".carousel-item") || [];
+    const prevBtn = document.getElementById("carousel-prev");
+    const nextBtn = document.getElementById("carousel-next");
     let currentIndex = 0;
     let autoPlayInterval: ReturnType<typeof setInterval> | null = null;
 
     function goToSlide(index: number) {
-      if (slides.length === 0) return;
+      if (slides.length === 0 || !carousel) return;
       // Wrap around
       if (index < 0) index = slides.length - 1;
       if (index >= slides.length) index = 0;
       currentIndex = index;
-      slides[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+
+      const slideWidth = carousel.clientWidth;
+      carousel.scrollTo({
+        left: slideWidth * currentIndex,
+        behavior: "smooth",
+      });
     }
 
     function startAutoPlay() {
@@ -69,30 +88,37 @@ import products, { categories } from '../data/products';
       if (autoPlayInterval) clearInterval(autoPlayInterval);
     }
 
-    prevBtn?.addEventListener('click', () => goToSlide(currentIndex - 1));
-    nextBtn?.addEventListener('click', () => goToSlide(currentIndex + 1));
+    prevBtn?.addEventListener("click", () => goToSlide(currentIndex - 1));
+    nextBtn?.addEventListener("click", () => goToSlide(currentIndex + 1));
 
     // Auto-play: advance every 5 seconds
     startAutoPlay();
 
     // Pause on hover (optional UX improvement)
-    carousel?.addEventListener('mouseenter', stopAutoPlay);
-    carousel?.addEventListener('mouseleave', startAutoPlay);
+    carousel?.addEventListener("mouseenter", stopAutoPlay);
+    carousel?.addEventListener("mouseleave", startAutoPlay);
   </script>
 
   <!-- Product Categories -->
   <section class="container mx-auto px-4 py-16">
     <h2 class="text-3xl font-bold text-center mb-8">주요 취급 제품</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-      {Object.entries(categories).map(([name, data]) => (
-        <a href={`/products/${name.toLowerCase()}`} class="card bg-base-100 shadow-xl image-full hover:scale-105 transition-transform duration-300">
-          <figure><img src={data.image} alt={name} /></figure>
-          <div class="card-body justify-center items-center text-center">
-            <h2 class="card-title text-3xl text-white">{name}</h2>
-            <p class="text-white/80">{data.description}</p>
-          </div>
-        </a>
-      ))}
+      {
+        Object.entries(categories).map(([name, data]) => (
+          <a
+            href={`/products/${name.toLowerCase()}`}
+            class="card bg-base-100 shadow-xl image-full hover:scale-105 transition-transform duration-300"
+          >
+            <figure>
+              <img src={data.image} alt={name} />
+            </figure>
+            <div class="card-body justify-center items-center text-center">
+              <h2 class="card-title text-3xl text-white">{name}</h2>
+              <p class="text-white/80">{data.description}</p>
+            </div>
+          </a>
+        ))
+      }
     </div>
   </section>
 
@@ -106,13 +132,13 @@ import products, { categories } from '../data/products';
           <p>Optimized performance for industrial needs.</p>
         </div>
         <div>
-            <h3 class="text-xl font-bold mb-2">Durability</h3>
-            <p>Built to last in harsh environments.</p>
-          </div>
-          <div>
-            <h3 class="text-xl font-bold mb-2">Support</h3>
-            <p>24/7 technical support for our clients.</p>
-          </div>
+          <h3 class="text-xl font-bold mb-2">Durability</h3>
+          <p>Built to last in harsh environments.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-2">Support</h3>
+          <p>24/7 technical support for our clients.</p>
+        </div>
       </div>
     </div>
   </section>
