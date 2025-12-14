@@ -10,3 +10,15 @@
 @theme {
     --font-sans: "Noto Sans KR", "Inter", ui-sans-serif, system-ui, sans-serif;
 }
+
+/* Reduce spacing for list items in typography prose */
+.prose :where(li) {
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+}
+
+.prose :where(ul),
+.prose :where(ol) {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
