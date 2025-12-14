@@ -109,11 +109,15 @@ import { categories } from "../data/products";
             href={`/products/${name.toLowerCase()}`}
             class="card bg-base-100 shadow-xl image-full hover:scale-105 transition-transform duration-300"
           >
-            <figure>
-              <img src={data.image} alt={name} />
+            <figure class="aspect-square">
+              <img
+                src={data.image}
+                alt={name}
+                class="w-full h-full object-fill"
+              />
             </figure>
             <div class="card-body justify-center items-center text-center">
-              <h2 class="card-title text-3xl text-white">{name}</h2>
+              <h2 class="card-title text-3xl text-white break-keep">{name}</h2>
               <p class="text-white/80">{data.description}</p>
             </div>
           </a>
