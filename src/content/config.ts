@@ -5,7 +5,8 @@ const noticeCollection = defineCollection({
     schema: z.object({
         title: z.string(),
         pubDate: z.date(),
-        description: z.string()
+        description: z.string(),
+        tags: z.array(z.string()).optional(),
     }),
 });
 

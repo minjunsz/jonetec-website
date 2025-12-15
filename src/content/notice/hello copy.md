@@ -1,8 +1,8 @@
 ---
-title: 'Website Launch'
-pubDate: 2025-12-15
+title: 'Website Launch2'
+pubDate: 2025-12-16
 description: 'We have launched our new official website.'
-tags: ['공지', '업데이트']
+tags: ['이벤트']
 ---
 
 # Welcome to Jonetec

@@ -5,10 +5,8 @@ import { categories } from "../data/products";
 ---
 
 <Layout>
-  <!-- Hero Section -->
-  <!-- Hero Section with Background Image -->
   <!-- Hero Section with Image Carousel -->
-  <div class="hero min-h-[60vh] bg-base-200 relative">
+  <div class="hero min-h-[70vh] bg-base-200 relative">
     <!-- Carousel Background -->
     <div id="hero-carousel" class="carousel w-full h-full absolute inset-0">
       <!-- Slide 1 -->
@@ -29,31 +27,85 @@ import { categories } from "../data/products";
     </div>
 
     <!-- Overlay -->
-    <div class="hero-overlay z-10"></div>
+    <div class="hero-overlay bg-black/50 z-10"></div>
 
     <!-- Hero Content -->
     <div class="hero-content text-center text-neutral-content relative z-20">
-      <div class="max-w-md">
-        <h1 class="mb-5 text-5xl font-bold text-white">JONETEC</h1>
-        <p class="mb-5 text-white">
-          Innovative Industrial Solutions for a Better Future.
+      <div class="max-w-2xl">
+        <div
+          class="inline-block px-4 py-1 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6 border border-white/20"
+        >
+          Industrial Safety Solutions
+        </div>
+        <h1
+          class="mb-6 text-5xl md:text-6xl font-bold text-white tracking-tight"
+        >
+          JONETEC
+        </h1>
+        <p class="mb-8 text-lg text-white/90 leading-relaxed">
+          산업 현장의 안전과 효율을 책임지는<br class="hidden md:block" />
+          최고의 파트너, 제이원텍
         </p>
-        <!-- <a href="/products" class="btn btn-primary">제품 보기</a> -->
+        <div class="flex gap-4 justify-center">
+          <a href="/products" class="btn btn-primary btn-lg gap-2">
+            제품 보기
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          <a
+            href="/about"
+            class="btn btn-ghost btn-lg text-white border-white/30 hover:bg-white/10"
+          >
+            회사 소개
+          </a>
+        </div>
       </div>
     </div>
 
-    <!-- Carousel Navigation (z-30 to be above overlay and content) -->
+    <!-- Carousel Navigation -->
     <div
-      class="absolute left-2 right-2 md:left-5 md:right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-30"
+      class="absolute left-4 right-4 md:left-8 md:right-8 top-1/2 flex -translate-y-1/2 transform justify-between z-30"
     >
       <button
         id="carousel-prev"
-        class="btn btn-circle btn-ghost text-white text-2xl">❮</button
+        class="btn btn-circle btn-sm md:btn-md bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 text-white"
+        >❮</button
       >
       <button
         id="carousel-next"
-        class="btn btn-circle btn-ghost text-white text-2xl">❯</button
+        class="btn btn-circle btn-sm md:btn-md bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 text-white"
+        >❯</button
       >
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div
+      class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 text-white/60"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
     </div>
   </div>
 
@@ -100,26 +152,56 @@ import { categories } from "../data/products";
   </script>
 
   <!-- Product Categories -->
-  <section class="container mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold text-center mb-8">주요 취급 제품</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+  <section class="container mx-auto px-4 py-20">
+    <div class="text-center mb-12">
+      <div
+        class="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4"
+      >
+        PRODUCTS
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">주요 취급 제품</h2>
+      <p class="text-base-content/60 max-w-xl mx-auto">
+        산업 현장에 최적화된 안전 솔루션을 제공합니다
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
       {
         Object.entries(categories).map(([name, data]) => (
           <a
             href={`/products/${name.toLowerCase()}`}
-            class="card bg-base-100 shadow-xl image-full hover:scale-105 transition-transform duration-300"
+            class="group card bg-base-100 shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300"
           >
-            <figure class="aspect-square">
+            <figure class="aspect-square relative overflow-hidden">
               <img
                 src={data.image}
                 alt={name}
-                class="w-full h-full object-fill"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h2 class="text-2xl font-bold mb-2 break-keep">{name}</h2>
+                <p class="text-white/80 text-sm line-clamp-2">
+                  {data.description}
+                </p>
+                <div class="mt-4 flex items-center gap-2 text-primary-content opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span class="text-sm font-medium">자세히 보기</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+              </div>
             </figure>
-            <div class="card-body justify-center items-center text-center">
-              <h2 class="card-title text-3xl text-white break-keep">{name}</h2>
-              <p class="text-white/80">{data.description}</p>
-            </div>
           </a>
         ))
       }
@@ -127,21 +209,104 @@ import { categories } from "../data/products";
   </section>
 
   <!-- Features -->
-  <section class="bg-base-200 py-16">
+  <section class="bg-gradient-to-br from-base-200 to-base-300 py-20">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-8">Why Jonetec?</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        <div>
-          <h3 class="text-xl font-bold mb-2">High Efficiency</h3>
-          <p>Optimized performance for industrial needs.</p>
+      <div class="text-center mb-12">
+        <div
+          class="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4"
+        >
+          WHY JONETEC
         </div>
-        <div>
-          <h3 class="text-xl font-bold mb-2">Durability</h3>
-          <p>Built to last in harsh environments.</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">왜 제이원텍일까요?</h2>
+        <p class="text-base-content/60 max-w-xl mx-auto">
+          믿을 수 있는 파트너십으로 산업 현장의 안전을 책임집니다
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Feature 1 -->
+        <div
+          class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow p-8 text-center group"
+        >
+          <div
+            class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center group-hover:scale-110 transition-transform"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">최적의 효율</h3>
+          <p class="text-base-content/60 leading-relaxed">
+            산업 현장에 최적화된 솔루션으로<br />
+            높은 효율성을 제공합니다
+          </p>
         </div>
-        <div>
-          <h3 class="text-xl font-bold mb-2">Support</h3>
-          <p>24/7 technical support for our clients.</p>
+
+        <!-- Feature 2 -->
+        <div
+          class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow p-8 text-center group"
+        >
+          <div
+            class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-secondary to-secondary/60 flex items-center justify-center group-hover:scale-110 transition-transform"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">검증된 내구성</h3>
+          <p class="text-base-content/60 leading-relaxed">
+            혹독한 환경에서도 견딜 수 있는<br />
+            검증된 제품을 공급합니다
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div
+          class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow p-8 text-center group"
+        >
+          <div
+            class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-accent to-accent/60 flex items-center justify-center group-hover:scale-110 transition-transform"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">전문 기술 지원</h3>
+          <p class="text-base-content/60 leading-relaxed">
+            전문 엔지니어의 기술 지원으로<br />
+            최상의 서비스를 제공합니다
+          </p>
         </div>
       </div>
     </div>

@@ -5,66 +5,127 @@ import { getCollection } from 'astro:content';
 const notices = (await getCollection('notice')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+// Collect all unique tags
+const allTags = [...new Set(notices.flatMap(notice => notice.data.tags || []))];
 ---
 
 <Layout title="제이원텍(주) | 공지사항" description="제이원텍(주) 공지사항">
-  <div class="container mx-auto px-4 py-16 max-w-6xl">
-    <h1 class="text-4xl font-bold text-center mb-12">Notice</h1>
+  <div class="container mx-auto px-4 py-16 max-w-4xl">
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+      <div class="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+        NOTICE
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">공지사항</h1>
+      <p class="text-base-content/60">
+        제이원텍의 새로운 소식을 확인하세요
+      </p>
+    </div>
     
-    <!-- Search Bar -->
-    <div class="flex justify-end mb-4">
-      <label class="input input-bordered flex items-center gap-2">
-        <input type="text" id="searchInput" class="grow" placeholder="Search" />
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70"><path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" /></svg>
+    <!-- Tag Filter & Search -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+      <!-- Tag Filter Dropdown -->
+      {allTags.length > 0 && (
+        <select id="tagFilter" class="select select-bordered select-sm w-full sm:w-auto">
+          <option value="all">전체 태그</option>
+          {allTags.map(tag => (
+            <option value={tag}>{tag}</option>
+          ))}
+        </select>
+      )}
+      
+      <!-- Search Bar -->
+      <label class="input input-bordered input-sm flex items-center gap-2 w-full sm:w-auto sm:max-w-xs bg-base-100 shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-50"><path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" /></svg>
+        <input type="text" id="searchInput" class="grow" placeholder="검색" />
       </label>
     </div>
 
-    <div class="overflow-x-auto">
-      <table class="table" id="noticeTable">
-        <thead>
-          <tr class="bg-base-200">
-            <th class="w-16 text-center">No.</th>
-            <th>Title</th>
-            <th class="w-32 text-center">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {notices.map((notice, index) => (
-            <tr class="hover">
-              <td class="text-center">{notices.length - index}</td>
-              <td>
-                <a href={`/notice/${notice.slug}`} class="link link-hover">
-                    {notice.data.title}
-                </a>
-              </td>
-              <td class="text-center">{notice.data.pubDate.toLocaleDateString()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <!-- Notice List -->
+    <div class="bg-base-100 rounded-base border border-base-200 shadow-sm overflow-hidden" id="noticeList">
+      {notices.length === 0 ? (
+        <div class="text-center py-16">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-base-200 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-base-content/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <p class="text-base-content/50">등록된 공지사항이 없습니다.</p>
+        </div>
+      ) : (
+        notices.map((notice, index) => (
+          <a 
+            href={`/notice/${notice.slug}`} 
+            class="group notice-item flex items-center gap-4 px-5 py-4 hover:bg-base-50 transition-colors border-b border-base-200 last:border-b-0"
+            data-tags={JSON.stringify(notice.data.tags || [])}
+          >
+            <!-- Number -->
+            <span class="flex-shrink-0 w-8 text-sm font-medium text-base-content/40 text-center self-start pt-0.5">
+              {notices.length - index}
+            </span>
+            
+            <!-- Content -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="font-medium text-sm group-hover:text-primary transition-colors truncate notice-title">
+                  {notice.data.title}
+                </span>
+                {notice.data.tags && notice.data.tags.map(tag => (
+                  <span class="badge badge-sm badge-outline badge-primary">{tag}</span>
+                ))}
+              </div>
+              <span class="text-xs text-base-content/50 line-clamp-1 mt-0.5 block">
+                {notice.data.description}
+              </span>
+            </div>
+            
+            <!-- Date -->
+            <span class="flex-shrink-0 text-xs text-base-content/40 hidden sm:block">
+              {notice.data.pubDate.toLocaleDateString('ko-KR')}
+            </span>
+            
+            <!-- Arrow -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-base-content/20 group-hover:text-primary group-hover:translate-x-0.5 transition-all flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        ))
+      )}
     </div>
 
     <script>
       const searchInput = document.getElementById('searchInput') as HTMLInputElement;
-      const table = document.getElementById('noticeTable') as HTMLTableElement;
+      const noticeList = document.getElementById('noticeList');
+      const tagFilter = document.getElementById('tagFilter');
+      let currentTag = 'all';
       
-      if (searchInput && table) {
-        const rows = table.getElementsByTagName('tr');
+      function filterNotices() {
+        if (!noticeList) return;
+        const items = noticeList.getElementsByClassName('notice-item');
+        const searchFilter = searchInput?.value.toLowerCase() || '';
 
-        searchInput.addEventListener('keyup', () => {
-          const filter = searchInput.value.toLowerCase();
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i] as HTMLElement;
+          const titleElement = item.getElementsByClassName('notice-title')[0] as HTMLElement;
+          const tags: string[] = JSON.parse(item.dataset.tags || '[]');
+          
+          const matchesSearch = !searchFilter || 
+            (titleElement?.textContent || '').toLowerCase().includes(searchFilter);
+          const matchesTag = currentTag === 'all' || tags.includes(currentTag);
+          
+          item.style.display = matchesSearch && matchesTag ? '' : 'none';
+        }
+      }
 
-          for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header
-            const titleCell = rows[i].getElementsByTagName('td')[1];
-            if (titleCell) {
-              const txtValue = titleCell.textContent || titleCell.innerText;
-              if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                rows[i].style.display = "";
-              } else {
-                rows[i].style.display = "none";
-              }
-            }       
-          }
+      if (searchInput) {
+        searchInput.addEventListener('keyup', filterNotices);
+      }
+      
+      if (tagFilter) {
+        tagFilter.addEventListener('change', () => {
+          currentTag = (tagFilter as HTMLSelectElement).value;
+          filterNotices();
         });
       }
     </script>
