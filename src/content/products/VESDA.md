@@ -5,7 +5,11 @@ summary: "과열, 거을음 등 눈에 보이지 않는 미세 연기 감지기"
 image: "/images/products/vesda-thumbnail.png"
 description: |
   VESDA 화재감지기는 중요설비의 과열이나 거을음등 눈에보이지 않은 미세연기를 조기에 감지할수 있어 화재의 확산을 미연에 방지 할 뿐 아니라 설비의 이상 상태를 감지 합니다.
-
+attachments:
+  - filename: "논문 파일"
+    fileUrl: "https://drive.usercontent.google.com/uc?id=1ToM8RSZ2CupX0zK8PTCJFGj7vy1wH9JO&export=download"
+  - filename: "논문 파일2"
+    fileUrl: "https://drive.usercontent.google.com/uc?id=1ToM8RSZ2CupX0zK8PTCJFGj7vy1wH9JO&export=download"
 ---
 <img src="/images/products/vesda-xtrails-honeywell-logo.png" alt="xtrails-honeywell-logo" class="mx-auto w-80 my-4" />
 

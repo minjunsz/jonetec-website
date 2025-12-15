@@ -1,15 +1,15 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { getCollection, render } from 'astro:content';
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
 
-import { marked } from 'marked';
+import { marked } from "marked";
 
 export async function getStaticPaths() {
-  const products = await getCollection('products');
-  return products.map(product => ({
-    params: { id: product.id },
-    props: { product },
-  }));
+    const products = await getCollection("products");
+    return products.map((product) => ({
+        params: { id: product.id },
+        props: { product },
+    }));
 }
 
 const { product } = Astro.props;
@@ -17,47 +17,138 @@ const { Content } = await render(product);
 const parsedDescription = await marked.parse(product.data.description);
 ---
 
-<Layout title={`${product.data.name}`} description={`제이원텍(주)|${product.data.name}`}>
-  <div class="container mx-auto px-4 py-8">
-    <a href="/products" class="btn btn-ghost mb-8">← Back to List</a>
-    
-    <div class="flex flex-col lg:flex-row gap-12">
-        <!-- Image -->
-        <div class="w-full lg:w-1/2">
-            <img src={product.data.image || "https://placehold.co/600x400?text=Product+Image"} alt={product.data.name} class="rounded-2xl shadow-lg w-full object-cover" />
-        </div>
+<Layout
+    title={`${product.data.name}`}
+    description={`제이원텍(주)|${product.data.name}`}
+>
+    <div class="container mx-auto px-4 py-8">
+        <a href="/products" class="btn btn-ghost mb-8">← Back to List</a>
 
-        <!-- Info -->
-        <div class="w-full lg:w-1/2 lg:max-h-[80vh] lg:overflow-y-auto lg:border lg:border-base-300 lg:rounded-xl lg:p-8 lg:shadow-inner bg-base-100/50">
-            <div class="badge badge-accent mb-4">{product.data.category}</div>
-            <h1 class="text-4xl font-bold mb-4">{product.data.name}</h1>
-            
-            <div class="prose max-w-none mb-8">
-                <div set:html={parsedDescription} />
+        <div class="flex flex-col lg:flex-row gap-4">
+            <!-- Image -->
+            <div class="w-full lg:w-1/4">
+                <img
+                    src={product.data.image ||
+                        "https://placehold.co/600x400?text=Product+Image"}
+                    alt={product.data.name}
+                    class="rounded-2xl shadow-lg w-full object-cover"
+                />
+
+                {
+                    product.data.attachments &&
+                        product.data.attachments.length > 0 && (
+                            <div class="mt-6">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5 text-primary"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"
+                                        />
+                                    </svg>
+                                    <span class="text-sm font-semibold text-base-content/80">
+                                        다운로드
+                                    </span>
+                                </div>
+                                <div class="space-y-2">
+                                    {product.data.attachments.map((file) => (
+                                        <a
+                                            href={file.fileUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="group flex items-center gap-3 p-3 bg-base-100 rounded-lg border border-base-300 hover:border-primary hover:shadow-md transition-all duration-200"
+                                        >
+                                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="h-5 w-5 text-primary"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                                    />
+                                                </svg>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <p class="text-sm font-medium text-base-content truncate group-hover:text-primary transition-colors">
+                                                    {file.filename}
+                                                </p>
+                                                <p class="text-xs text-base-content/50">
+                                                    클릭하여 다운로드
+                                                </p>
+                                            </div>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-5 w-5 text-base-content/30 group-hover:text-primary group-hover:translate-y-0.5 transition-all"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                                                />
+                                            </svg>
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        )
+                }
             </div>
 
-            {product.data.specs && (
-                <div class="card bg-base-200 shadow-sm p-6">
-                    <h3 class="text-xl font-bold mb-4">Specifications</h3>
-                    <table class="table">
-                        <tbody>
-                            {product.data.specs?.map(spec => (
-                                <tr>
-                                    <th class="w-1/3">{spec.label}</th>
-                                    <td>{spec.value}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+            <!-- Info -->
+            <div
+                class="w-full lg:w-3/4 lg:max-h-[80vh] lg:overflow-y-auto lg:border lg:border-base-300 lg:rounded-xl lg:p-8 lg:shadow-inner bg-base-100/50"
+            >
+                <div class="badge badge-accent mb-4">
+                    {product.data.category}
                 </div>
-            )}
-            
+                <h1 class="text-4xl font-bold mb-4">{product.data.name}</h1>
 
-            <div class="mt-8 prose max-w-none">
-                <div class="divider"/>
-                <Content />
+                <div class="prose max-w-none mb-8">
+                    <div set:html={parsedDescription} />
+                </div>
+
+                {
+                    product.data.specs && (
+                        <div class="card bg-base-200 shadow-sm p-6">
+                            <h3 class="text-xl font-bold mb-4">
+                                Specifications
+                            </h3>
+                            <table class="table">
+                                <tbody>
+                                    {product.data.specs?.map((spec) => (
+                                        <tr>
+                                            <th class="w-1/3">{spec.label}</th>
+                                            <td>{spec.value}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )
+                }
+
+                <div class="mt-8 prose max-w-none">
+                    <div class="divider"></div>
+                    <Content />
+                </div>
             </div>
         </div>
     </div>
-  </div>
 </Layout>

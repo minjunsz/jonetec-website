@@ -26,6 +26,10 @@ const productsCollection = defineCollection({
         name: z.string(),
         summary: z.string(),
         image: z.string(),
+        attachments: z.array(z.object({
+            filename: z.string(),
+            fileUrl: z.string()
+        })).optional(),
         specs: z.array(z.object({
             label: z.string(),
             value: z.string()
