@@ -2,9 +2,13 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
-const archives = (await getCollection("archive")).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const archives = (await getCollection("archive")).sort((a, b) => {
+    // Pinned items first
+    if (a.data.pinned && !b.data.pinned) return -1;
+    if (!a.data.pinned && b.data.pinned) return 1;
+    // Then by date
+    return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+});
 ---
 
 <Layout title="제이원텍(주) | 자료실" description="제이원텍(주) 자료실">
@@ -29,7 +33,7 @@ const archives = (await getCollection("archive")).sort(
         </div>
 
         <!-- Archive List -->
-        <div class="bg-base-100 rounded-lg border border-base-200 shadow-sm overflow-hidden" id="archiveList">
+        <div class="bg-base-100 rounded-md border border-base-200 shadow-sm overflow-hidden" id="archiveList">
             {archives.length === 0 ? (
                 <div class="text-center py-16">
                     <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-base-200 flex items-center justify-center">
@@ -42,9 +46,15 @@ const archives = (await getCollection("archive")).sort(
             ) : (
                 archives.map((item, index) => (
                     <div class="group archive-item flex items-center gap-4 px-5 py-4 hover:bg-base-50 transition-colors border-b border-base-200 last:border-b-0">
-                        <!-- Number -->
-                        <span class="flex-shrink-0 w-8 text-sm font-medium text-base-content/40 text-center self-start pt-0.5">
-                            {archives.length - index}
+                        <!-- Pin Icon or Number -->
+                        <span class="flex-shrink-0 w-8 text-center self-start pt-0.5">
+                            {item.data.pinned ? (
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary mx-auto" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M16 4a1 1 0 0 1 1 1v3.586l1.707 1.707a1 1 0 0 1 .293.707v2a1 1 0 0 1-1 1h-4v6a1 1 0 1 1-2 0v-6H8a1 1 0 0 1-1-1v-2a1 1 0 0 1 .293-.707L9 8.586V5a1 1 0 0 1 1-1h6z"/>
+                                </svg>
+                            ) : (
+                                <span class="text-sm font-medium text-base-content/40">{archives.length - index}</span>
+                            )}
                         </span>
                         
                         <!-- Content -->
