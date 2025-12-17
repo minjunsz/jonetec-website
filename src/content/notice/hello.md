@@ -1,12 +1,16 @@
 ---
-title: 'Website Launch'
+title: '홈페이지 리뉴얼 안내'
 pubDate: 2025-12-15
-description: 'We have launched our new official website.'
+description: '제이원텍(주) 홈페이지가 새롭게 리뉴얼되었습니다.'
 tags: ['공지', '업데이트']
 pinned: true
 ---
 
-# Welcome to Jonetec
+# 홈페이지 리뉴얼 안내
 
-We are happy to announce the launch of our new website. 
-Here you can find information about our products and company.
+안녕하세요. 제이원텍(주)입니다.
+
+고객 여러분께 더 나은 서비스를 제공하기 위해 홈페이지가 새롭게 리뉴얼되었습니다.
+앞으로도 많은 관심 부탁드립니다.
+
+감사합니다.
