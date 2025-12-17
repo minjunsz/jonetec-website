@@ -140,8 +140,16 @@ import { categories } from "../data/products";
       if (autoPlayInterval) clearInterval(autoPlayInterval);
     }
 
-    prevBtn?.addEventListener("click", () => goToSlide(currentIndex - 1));
-    nextBtn?.addEventListener("click", () => goToSlide(currentIndex + 1));
+    prevBtn?.addEventListener("click", () => {
+      stopAutoPlay();
+      goToSlide(currentIndex - 1);
+      startAutoPlay();
+    });
+    nextBtn?.addEventListener("click", () => {
+      stopAutoPlay();
+      goToSlide(currentIndex + 1);
+      startAutoPlay();
+    });
 
     // Auto-play: advance every 5 seconds
     startAutoPlay();
