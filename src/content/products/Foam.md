@@ -12,7 +12,7 @@ attachments:
 ---
 # FireDos 정량폼혼합장치
 
-<img src="/images/products/firedos-logo.webp" alt="firedos-logo" class="mx-auto w-72 my-4" />
+<img src="/images/products/firedos-logo.jpg" alt="firedos-logo" class="mx-auto w-72 my-4" />
 
 ## 장점
 - 배압과 배관의 길이, 폼액의 점도, 소화수의 유량의 변화와 관계없이 정확하게 물과 폼액을 지정한 혼합비율로 믹싱 가능
