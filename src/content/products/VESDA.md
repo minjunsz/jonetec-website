@@ -5,6 +5,7 @@ summary: "과열, 거을음 등 눈에 보이지 않는 미세 연기 감지기"
 image: "/images/products/vesda-thumbnail.png"
 description: |
   VESDA 화재감지기는 중요설비의 과열이나 거을음등 눈에보이지 않은 미세연기를 조기에 감지할수 있어 화재의 확산을 미연에 방지 할 뿐 아니라 설비의 이상 상태를 감지 합니다.
+priority: 30
 attachments:
   - filename: "VESDA 소개자료"
     fileUrl: "https://attachments.jonetec.co.kr/VESDA/VESDA%EC%86%8C%EA%B0%9C%EC%9E%90%EB%A3%8C_%EC%A0%9C%EC%9D%B4%EC%9B%90%ED%85%8D.pdf"

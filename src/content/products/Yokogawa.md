@@ -5,6 +5,7 @@ summary: "산업 자동화 및 측정 솔루션"
 image: "/images/products/yokogawa-thumbnail.png"
 description: |
    요꼬가와는 산업 자동화 및 측정 솔루션의 선도적인 공급업체입니다. 요꼬가와는 우수한 기술과 엔지니어링 서비스, 프로젝트 관리 및 유지보수를 결합하여 현장에서 입증된 운영 효율성, 안전, 품질 및 신뢰성을 제공합니다.
+priority: 80
 attachments:
   - filename: "제품 카다로그 (필드계기, 분석기)"
     fileUrl: "https://attachments.jonetec.co.kr/YOKOGAWA/Product_Cataloge.pdf"

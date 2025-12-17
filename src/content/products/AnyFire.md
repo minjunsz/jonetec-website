@@ -5,6 +5,7 @@ summary: "수(水)계 소화설비로서는 방호할 수 없는 방호구역에
 image: "/images/products/anyfire-thumbnail.png"
 description: |
   *Clean Agent Fire Suppression System:* 전기실, 전산실 및 고가의 장비가 보관되는곳 등 수(水)계 소화설비로서는 방호할 수 없는 방호구역에 적용 하는 가스계 소화시스템
+priority: 100
 attachments:
   - filename: "AnyFire HFC-23 카타로그"
     fileUrl: "https://attachments.jonetec.co.kr/AnyFire/AnyFire(HFC-23)%EC%B9%B4%EB%8B%A4%EB%A1%9C%EA%B7%B8.pdf"

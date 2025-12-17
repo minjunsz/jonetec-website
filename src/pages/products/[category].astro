@@ -18,7 +18,7 @@ const allProducts = await getCollection("products");
 const filteredProducts = allProducts
   .filter((p) => p.data.category.toLowerCase() === category)
   .map((p) => ({ ...p.data, id: p.id }))
-  .sort((a, b) => a.name.localeCompare(b.name)); // Sort by name alphabetically
+  .sort((a, b) => b.priority - a.priority); // Sort by name alphabetically
 ---
 
 <Layout

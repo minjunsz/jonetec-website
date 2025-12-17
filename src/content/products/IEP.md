@@ -5,6 +5,7 @@ summary: "가연성분진과 하이브리드 분진에 의한 폭발을 완화, 
 image: "/images/products/iep-thumbnail.png"
 description: |
   IEP Technologies는 60년 이상 폭발 방지 시스템 및 서비스를 제공하는 세계적인 기업입니다. 제이원텍에서는 공정내의 가연성분진과 하이브리드 분진에 의한 폭발을 완화, 차단 및 억제하는 시스템을 공급합니다. 
+priority: 40
 attachments:
   - filename: "IEP 제품 브로셔"
     fileUrl: "https://attachments.jonetec.co.kr/IEP/IEP_%EC%A0%9C%ED%92%88_%EB%B8%8C%EB%A1%9C%EC%85%94.pdf"

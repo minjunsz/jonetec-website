@@ -11,16 +11,17 @@ const categoryKeys = Object.keys(categories);
 const filteredProducts = products
   .map((p) => ({ ...p.data, id: p.id }))
   .sort((a, b) => {
-    const catIndexA = categoryKeys.indexOf(a.category);
-    const catIndexB = categoryKeys.indexOf(b.category);
+    // const catIndexA = categoryKeys.indexOf(a.category);
+    // const catIndexB = categoryKeys.indexOf(b.category);
 
-    // 1. Sort by Category Order defined in products.ts
-    if (catIndexA !== catIndexB) {
-      return catIndexA - catIndexB;
-    }
+    // // 1. Sort by Category Order defined in products.ts
+    // if (catIndexA !== catIndexB) {
+    //   return catIndexA - catIndexB;
+    // }
 
-    // 2. Sort by Name alphabetically within same category
-    return a.name.localeCompare(b.name);
+    // // 2. Sort by Name alphabetically within same category
+    // return a.name.localeCompare(b.name);
+    return b.priority - a.priority;
   });
 ---
 

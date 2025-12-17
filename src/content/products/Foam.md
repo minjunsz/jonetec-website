@@ -5,6 +5,7 @@ summary: "전기적 에너지 없이 폼액이 물과 일정한 비율로 유지
 image: "/images/products/firedos.webp"
 description: |
   FireDos (PRESSURE SIDE PROPORTIONER : 정량폼혼합장치)는 전기적 에너지 없이 순수하게 물의 흐름에 의해 작동되는 장치로, 특별히 고안된 워터모터에 의해 폼액이 물과 일정한 비율로 정밀하게 유지하도록 함
+priority: 60
 attachments:
   - filename: "Firedos-Brochure_English"
     fileUrl: "https://attachments.jonetec.co.kr/FireDos/Firedos-Brochure_English.pdf"

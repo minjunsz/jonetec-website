@@ -47,6 +47,7 @@ const productsCollection = defineCollection({
         // The user specifically asked "Can I use markdown files for additional description placement?".
         // So let's make the *body* of the markdown file the "Additional Description".
         description: z.string(),
+        priority: z.number(),
     }),
 });
 

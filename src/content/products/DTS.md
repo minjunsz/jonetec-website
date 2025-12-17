@@ -5,6 +5,7 @@ summary: "광섬유를 이용하여 넓고 긴 영역의 온도를 1m 간격으�
 image: "/images/products/dts-thumbnail.png"
 description: |
   광섬유를 이용하여 넓고 긴 영역의 온도를 1m 간격으로 측정하는 장비로, 배관의 누출탐지, 덕트나 케이블의 온도감시, 대형 장치의 표면 온도분포 및 누출 감지등에 활용 됨. 
+priority: 10
 attachments:
   - filename: "DTS 카타로그 한글"
     fileUrl: "https://attachments.jonetec.co.kr/DTS/DTSX_catalog_%ED%95%9C%EA%B8%80.pdf"
