@@ -5,7 +5,21 @@ summary: "수(水)계 소화설비로서는 방호할 수 없는 방호구역에
 image: "/images/products/anyfire-thumbnail.png"
 description: |
   *Clean Agent Fire Suppression System:* 전기실, 전산실 및 고가의 장비가 보관되는곳 등 수(水)계 소화설비로서는 방호할 수 없는 방호구역에 적용 하는 가스계 소화시스템
-
+attachments:
+  - filename: "AnyFire HFC-23 카타로그"
+    fileUrl: "https://attachments.jonetec.co.kr/AnyFire/AnyFire(HFC-23)%EC%B9%B4%EB%8B%A4%EB%A1%9C%EA%B7%B8.pdf"
+  - filename: "AnyFire HFC-125 카타로그"
+    fileUrl: "https://attachments.jonetec.co.kr/AnyFire/AnyFire(HFC-125)_%EC%B9%B4%EB%8B%A4%EB%A1%9C%EA%B7%B8.pdf"
+  - filename: "AnyFire HFC-227ea(FM-200) 카타로그"
+    fileUrl: "https://attachments.jonetec.co.kr/AnyFire/AnyFire(HFC-227ea)%EC%B9%B4%EB%8B%A4%EB%A1%9C%EA%B7%B8.pdf"
+  - filename: "AnyFire HP-CO2 카타로그"
+    fileUrl: "https://attachments.jonetec.co.kr/AnyFire/AnyFire(HPCO2)_%EC%B9%B4%EB%8B%A4%EB%A1%9C%EA%B7%B8.pdf"
+  - filename: "AnyFire IG-100 카타로그"
+    fileUrl: "https://attachments.jonetec.co.kr/AnyFire/AnyFire(IG-100)_%EC%B9%B4%EB%8B%A4%EB%A1%9C%EA%B7%B8.pdf"
+  - filename: "AnyFire 튜브 카타로그"
+    fileUrl: "https://attachments.jonetec.co.kr/AnyFire/AnyFire(Tube)_Catalog.pdf"
+  - filename: "AnyFire 트레이스 소개자료"
+    fileUrl: "https://attachments.jonetec.co.kr/AnyFire/AnyFire(TRACE)_%EC%86%8C%EA%B0%9C%EC%84%9C.pdf"
 ---
 <img src="/images/products/anyfire-stec-logo.webp" alt="stec-logo" class="mx-auto w-80 my-4" />
 
