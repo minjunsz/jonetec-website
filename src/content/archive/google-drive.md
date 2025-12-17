@@ -4,6 +4,7 @@ description: 'Google Drive를 통한 파일 업로드 테스트'
 pubDate: 2025-12-14
 fileUrl: 'https://drive.usercontent.google.com/uc?id=1ToM8RSZ2CupX0zK8PTCJFGj7vy1wH9JO&export=download'
 pinned: true
+tags: ['클라우드', '구글']
 ---
 
 # Test Upload (Google Drive)

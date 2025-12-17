@@ -9,6 +9,9 @@ const archives = (await getCollection("archive")).sort((a, b) => {
     // Then by date
     return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
 });
+
+// Collect all unique tags
+const allTags = [...new Set(archives.flatMap(item => item.data.tags || []))];
 ---
 
 <Layout title="제이원텍(주) | 자료실" description="제이원텍(주) 자료실">
@@ -24,8 +27,19 @@ const archives = (await getCollection("archive")).sort((a, b) => {
             </p>
         </div>
         
-        <!-- Search Bar -->
-        <div class="flex justify-end mb-6">
+        <!-- Tag Filter & Search -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <!-- Tag Filter Dropdown -->
+            {allTags.length > 0 && (
+                <select id="tagFilter" class="select select-bordered select-sm w-full sm:w-auto">
+                    <option value="all">전체 태그</option>
+                    {allTags.map(tag => (
+                        <option value={tag}>{tag}</option>
+                    ))}
+                </select>
+            )}
+
+            <!-- Search Bar -->
             <label class="input input-bordered input-sm flex items-center gap-2 w-full sm:w-auto sm:max-w-xs bg-base-100 shadow-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-50"><path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" /></svg>
                 <input type="text" id="searchInput" class="grow" placeholder="검색" />
@@ -45,7 +59,10 @@ const archives = (await getCollection("archive")).sort((a, b) => {
                 </div>
             ) : (
                 archives.map((item, index) => (
-                    <div class="group archive-item flex items-center gap-4 px-5 py-4 hover:bg-base-50 transition-colors border-b border-base-200 last:border-b-0">
+                    <div 
+                        class="group archive-item flex items-center gap-4 px-5 py-4 hover:bg-base-50 transition-colors border-b border-base-200 last:border-b-0"
+                        data-tags={JSON.stringify(item.data.tags || [])}
+                    >
                         <!-- Pin Icon or Number -->
                         <span class="flex-shrink-0 w-8 text-center self-start pt-0.5">
                             {item.data.pinned ? (
@@ -59,10 +76,15 @@ const archives = (await getCollection("archive")).sort((a, b) => {
                         
                         <!-- Content -->
                         <div class="flex-1 min-w-0">
-                            <a href={`/archive/${item.slug}`} class="font-medium text-sm hover:text-primary transition-colors truncate block archive-title">
-                                {item.data.title}
-                            </a>
-                            <span class="text-xs text-base-content/50 line-clamp-1 mt-0.5 block">
+                            <div class="flex items-center gap-2 flex-wrap mb-1">
+                                <a href={`/archive/${item.slug}`} class="font-medium text-sm hover:text-primary transition-colors truncate block archive-title">
+                                    {item.data.title}
+                                </a>
+                                {item.data.tags && item.data.tags.map(tag => (
+                                    <span class="badge badge-xs badge-outline badge-primary">{tag}</span>
+                                ))}
+                            </div>
+                            <span class="text-xs text-base-content/50 line-clamp-1 block">
                                 {item.data.description}
                             </span>
                         </div>
@@ -94,24 +116,35 @@ const archives = (await getCollection("archive")).sort((a, b) => {
         <script>
             const searchInput = document.getElementById('searchInput') as HTMLInputElement;
             const archiveList = document.getElementById('archiveList');
+            const tagFilter = document.getElementById('tagFilter');
+            let currentTag = 'all';
             
-            if (searchInput && archiveList) {
+            function filterArchives() {
+                if (!archiveList) return;
                 const items = archiveList.getElementsByClassName('archive-item');
+                const searchFilter = searchInput?.value.toLowerCase() || '';
 
-                searchInput.addEventListener('keyup', () => {
-                    const filter = searchInput.value.toLowerCase();
-
-                    for (let i = 0; i < items.length; i++) {
-                        const titleElement = items[i].getElementsByClassName('archive-title')[0] as HTMLElement;
-                        if (titleElement) {
-                            const txtValue = titleElement.textContent || titleElement.innerText;
-                            if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                                (items[i] as HTMLElement).style.display = "";
-                            } else {
-                                (items[i] as HTMLElement).style.display = "none";
-                            }
-                        }
-                    }
+                for (let i = 0; i < items.length; i++) {
+                    const item = items[i] as HTMLElement;
+                    const titleElement = item.getElementsByClassName('archive-title')[0] as HTMLElement;
+                    const tags = JSON.parse(item.dataset.tags || '[]');
+                    
+                    const matchesSearch = !searchFilter || 
+                        (titleElement?.textContent || '').toLowerCase().indexOf(searchFilter) > -1;
+                    const matchesTag = currentTag === 'all' || tags.includes(currentTag);
+                    
+                    item.style.display = matchesSearch && matchesTag ? '' : 'none';
+                }
+            }
+            
+            if (searchInput) {
+                searchInput.addEventListener('keyup', filterArchives);
+            }
+            
+            if (tagFilter) {
+                tagFilter.addEventListener('change', () => {
+                    currentTag = (tagFilter as HTMLSelectElement).value;
+                    filterArchives();
                 });
             }
         </script>

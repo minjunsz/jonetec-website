@@ -19,6 +19,7 @@ const archiveCollection = defineCollection({
         pubDate: z.date(),
         fileUrl: z.string().optional(),
         pinned: z.boolean().optional(),
+        tags: z.array(z.string()).optional(),
     }),
 });
 
