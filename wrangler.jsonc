@@ -7,7 +7,7 @@
     },
     "routes": [
         {
-            "pattern": "jonetec.minjunpark.com",
+            "pattern": "jonetec.co.kr",
             "custom_domain": true
         }
     ]
