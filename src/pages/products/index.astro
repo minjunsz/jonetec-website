@@ -23,9 +23,26 @@ const filteredProducts = products
     // return a.name.localeCompare(b.name);
     return b.priority - a.priority;
   });
+
+const listSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: filteredProducts.map((product, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    url: new URL(`/products/${product.id}`, Astro.site).href,
+    name: product.name,
+    image: new URL(product.image || "/jonetec_logo.png", Astro.site).href,
+    description: product.summary,
+  })),
+};
 ---
 
-<Layout title="제이원텍(주) | 제품 소개" description="제이원텍(주) 제품 소개">
+<Layout
+  title="제이원텍(주) | 제품 소개"
+  description="제이원텍(주) 제품 소개"
+  structuredData={listSchema}
+>
   <div class="container mx-auto px-4 py-16">
     <!-- Hero Section -->
     <div class="text-center mb-12">

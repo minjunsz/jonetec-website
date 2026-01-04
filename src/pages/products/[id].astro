@@ -15,11 +15,26 @@ export async function getStaticPaths() {
 const { product } = Astro.props;
 const { Content } = await render(product);
 const parsedDescription = await marked.parse(product.data.description);
+
+const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.data.name,
+    description: product.data.description,
+    image: new URL(product.data.image || "/jonetec_logo.png", Astro.site).href,
+    brand: {
+        "@type": "Brand",
+        name: "Jonetec",
+    },
+    category: product.data.category, // Optional but helpful
+};
 ---
 
 <Layout
     title={`${product.data.name}`}
     description={`제이원텍(주)|${product.data.name}`}
+    image={product.data.image}
+    structuredData={productSchema}
 >
     <div class="container mx-auto px-4 py-8">
         <a href="/products" class="btn btn-ghost mb-8">← Back to List</a>
