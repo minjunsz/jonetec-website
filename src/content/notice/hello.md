@@ -1,6 +1,6 @@
 ---
 title: '홈페이지 리뉴얼 안내'
-pubDate: 2025-12-17
+pubDate: 2026-01-08
 description: '제이원텍(주) 홈페이지가 새롭게 리뉴얼되었습니다.'
 tags: ['공지', '업데이트']
 pinned: true
