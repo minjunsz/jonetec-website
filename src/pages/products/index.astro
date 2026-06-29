@@ -9,6 +9,7 @@ const products = await getCollection("products");
 const categoryKeys = Object.keys(categories);
 // Flatten and sort
 const filteredProducts = products
+  .filter((p) => p.data.draft !== true)
   .map((p) => ({ ...p.data, id: p.id }))
   .sort((a, b) => {
     // const catIndexA = categoryKeys.indexOf(a.category);
