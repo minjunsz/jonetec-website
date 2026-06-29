@@ -1,4 +1,5 @@
 ---
+draft: true
 category: "소방 제품"
 name: "공기흡입형 화재감지기 (VESDA)"
 summary: "과열, 거을음 등 눈에 보이지 않는 미세 연기 감지기"
