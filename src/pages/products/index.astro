@@ -2,26 +2,26 @@
 import Layout from "../../layouts/Layout.astro";
 import ProductCard from "../../components/ProductCard.astro";
 import { getCollection } from "astro:content";
-import { categories } from "../../data/products"; // Keep categories for filter buttons
+import { categories } from "../../data/products";
 
+// Keep categories for filter buttons
 const products = await getCollection("products");
-
 const categoryKeys = Object.keys(categories);
-// Flatten and sort
+
+// Flatten and sort (카테고리별 정렬 적용)
 const filteredProducts = products
   .filter((p) => p.data.priority >= 0)
   .map((p) => ({ ...p.data, id: p.id }))
   .sort((a, b) => {
-    // const catIndexA = categoryKeys.indexOf(a.category);
-    // const catIndexB = categoryKeys.indexOf(b.category);
+    const catIndexA = categoryKeys.indexOf(a.category);
+    const catIndexB = categoryKeys.indexOf(b.category);
 
-    // // 1. Sort by Category Order defined in products.ts
-    // if (catIndexA !== catIndexB) {
-    //   return catIndexA - catIndexB;
-    // }
+    // 1. products.ts에 정의된 카테고리 순서대로 먼저 정렬
+    if (catIndexA !== catIndexB) {
+      return catIndexA - catIndexB;
+    }
 
-    // // 2. Sort by Name alphabetically within same category
-    // return a.name.localeCompare(b.name);
+    // 2. 같은 카테고리 내에서는 priority(우선순위)가 높은(큰) 순서대로 정렬
     return b.priority - a.priority;
   });
 

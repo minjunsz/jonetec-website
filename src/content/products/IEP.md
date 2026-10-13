@@ -1,6 +1,8 @@
 ---
-category: "분진폭발 방지 시스템"
-name: "폭발 방지 시스템"
+# 기존: category: "분진폭발 방지 시스템"
+category: "폭발 방지 솔루션"
+name: "분진 폭발 방지 시스템"
+# (이하 생략)
 summary: "가연성분진과 하이브리드 분진에 의한 폭발을 완화, 차단 및 억제하는 시스템"
 image: "/images/products/iep-thumbnail.png"
 description: |

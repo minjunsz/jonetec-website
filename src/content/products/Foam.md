@@ -1,6 +1,8 @@
 ---
-category: "소방 제품"
+# 기존: category: "소방 제품"
+category: "소화 시스템"
 name: "포 소화설비 (Foam System)"
+# (이하 생략)
 summary: "전기적 에너지 없이 폼액이 물과 일정한 비율로 유지하는 장치"
 image: "/images/products/firedos.webp"
 description: |
