@@ -1,6 +1,6 @@
 ---
 category: "플랜트 제어 시스템"
-name: "무선 센서 (Sushi Sensors)"
+name: "스시 센서 (Sushi Sensors)"
 summary: "LoRaWAN 기반 진동 및 온도 모니터링 무선 센서 (Sushi Sensor)"
 image: "/images/products/yokogawa-wireless-sensor.png"
 description: |
