@@ -10,7 +10,7 @@ export interface Categories {
 }
 
 export const categories: Categories = {
-    "소화 시스템": {
+    "소방 제품": {
         image: "/images/products/firefighting-thumbnail.png",
         description: "화재 초기 진압 및 피해 최소화를 위한 첨단 소화 설비"
     },
@@ -21,9 +21,5 @@ export const categories: Categories = {
     "플랜트 제어 시스템": {
         image: "/images/products/yokogawa-thumbnail.png",
         description: "안전하고 효율적인 플랜트 운영을 위한 자동화 제어 솔루션"
-    },
-    "산업용 센서": {
-        image: "/images/products/dts-thumbnail.png", 
-        description: "정밀한 데이터 측정과 실시간 모니터링을 위한 특수 센서"
     },
 };

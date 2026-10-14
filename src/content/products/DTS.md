@@ -1,8 +1,6 @@
 ---
-# 기존: category: "플랜트 제어 시스템"
-category: "산업용 센서"
+category: "플랜트 제어 시스템"
 name: "광섬유 온도센서 (DTS)"
-# (이하 생략)
 summary: "광섬유를 이용하여 넓고 긴 영역의 온도를 1m 간격으로 측정하는 장비. 화재 감지, 누출 감지 등에 사용"
 image: "/images/products/dts-thumbnail.png"
 description: |

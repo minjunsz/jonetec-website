@@ -1,5 +1,5 @@
 ---
-category: "소화 시스템"
+category: "소방 제품"
 name: "할로겐화합물 소화설비 (AnyFire)"
 summary: "수(水)계 소화설비로서는 방호할 수 없는 방호구역에 적용 하는 가스계 소화시스템"
 image: "/images/products/anyfire-thumbnail.png"
