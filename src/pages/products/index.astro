@@ -1,40 +1,37 @@
 ---
+// src/pages/products/index.astro
 import Layout from "../../layouts/Layout.astro";
 import ProductCard from "../../components/ProductCard.astro";
 import { getCollection } from "astro:content";
 import { categories } from "../../data/products";
 
-// Keep categories for filter buttons
-const products = await getCollection("products");
+// 전체 제품 가져오기
+const allProducts = await getCollection("products");
 const categoryKeys = Object.keys(categories);
 
-// Flatten and sort (카테고리별 정렬 적용)
-const filteredProducts = products
-  .filter((p) => p.data.priority >= 0)
-  .map((p) => ({ ...p.data, id: p.id }))
-  .sort((a, b) => {
-    const catIndexA = categoryKeys.indexOf(a.category);
-    const catIndexB = categoryKeys.indexOf(b.category);
+// 카테고리별로 제품 그룹화 및 우선순위 정렬
+const groupedProducts = categoryKeys.map((catKey) => {
+  const prods = allProducts
+    .filter((p) => p.data.category === catKey && p.data.priority >= 0)
+    .map((p) => ({ ...p.data, id: p.id }))
+    .sort((a, b) => b.priority - a.priority);
+    
+  return {
+    name: catKey,
+    data: categories[catKey],
+    products: prods,
+  };
+}).filter(group => group.products.length > 0); // 제품이 있는 카테고리만 렌더링
 
-    // 1. products.ts에 정의된 카테고리 순서대로 먼저 정렬
-    if (catIndexA !== catIndexB) {
-      return catIndexA - catIndexB;
-    }
-
-    // 2. 같은 카테고리 내에서는 priority(우선순위)가 높은(큰) 순서대로 정렬
-    return b.priority - a.priority;
-  });
-
+// SEO 데이터
 const listSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  itemListElement: filteredProducts.map((product, index) => ({
+  itemListElement: allProducts.map((product, index) => ({
     "@type": "ListItem",
     position: index + 1,
     url: new URL(`/products/${product.id}`, Astro.site).href,
-    name: product.name,
-    image: new URL(product.image || "/jonetec_logo.png", Astro.site).href,
-    description: product.summary,
+    name: product.data.name,
   })),
 };
 ---
@@ -44,7 +41,7 @@ const listSchema = {
   description="제이원텍(주) 제품 소개"
   structuredData={listSchema}
 >
-  <div class="container mx-auto px-4 py-16">
+  <div class="container mx-auto px-4 py-16" id="top">
     <!-- Hero Section -->
     <div class="text-center mb-12">
       <div
@@ -58,74 +55,63 @@ const listSchema = {
       </p>
     </div>
 
-    <!-- Filter -->
-    <div class="flex flex-wrap justify-center gap-3 mb-12">
-      <a href="/products" class="btn btn-neutral gap-2">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-          ></path>
-        </svg>
-        전체
-      </a>
+    <div class="sticky top-0 z-40 bg-base-100/95 backdrop-blur-md py-4 mb-16 border-b border-base-200 shadow-sm flex flex-wrap justify-center items-center gap-2 md:gap-3 transition-all w-full">
       {
-        Object.keys(categories).map((cat) => (
+        groupedProducts.map((group, idx) => (
           <a
-            href={`/products/${cat.toLowerCase()}`}
-            class="btn btn-outline hover:btn-primary gap-2 transition-all"
+            href={`#section-${idx}`}
+            class="btn btn-sm md:btn-md btn-outline border-base-300 hover:border-primary hover:bg-primary/10 hover:text-primary rounded-full font-medium transition-all bg-base-100"
           >
-            {cat}
+            <!-- 영문 괄호를 제외하고 한글 카테고리명만 표시 -->
+            {group.name.split(' (')[0]}
           </a>
         ))
       }
     </div>
 
-    <!-- Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="space-y-24">
       {
-        filteredProducts.map((product) => (
-          <ProductCard
-            id={product.id}
-            name={product.name}
-            summary={product.summary}
-            image={product.image}
-            category={product.category}
-          />
+        groupedProducts.map((group, idx) => (
+          <section id={`section-${idx}`} class="scroll-mt-24">
+            <!-- 섹션 타이틀 -->
+            <div class="mb-6 border-b-2 border-base-200 pb-3">
+              <h2 class="text-3xl md:text-4xl font-bold text-base-content mb-2 pl-2">
+                {group.name}
+              </h2>
+              <p class="text-base-content/60 pl-2">{group.data.description}</p>
+            </div>
+
+            <!-- 제품 그리드 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {group.products.map((product) => (
+                <ProductCard
+                  id={product.id}
+                  name={product.name}
+                  summary={product.summary}
+                  image={product.image}
+                  category={product.category}
+                />
+              ))}
+            </div>
+          </section>
         ))
       }
     </div>
-
+    
+    <!-- 제품이 없을 경우 -->
     {
-      filteredProducts.length === 0 && (
+      groupedProducts.length === 0 && (
         <div class="text-center py-16">
-          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-base-200 flex items-center justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-8 w-8 text-base-content/30"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-              />
-            </svg>
-          </div>
-          <p class="text-base-content/50">해당 카테고리에 제품이 없습니다.</p>
+          <p class="text-base-content/50">등록된 제품이 없습니다.</p>
         </div>
       )
     }
   </div>
 </Layout>
+
+<style>
+  /* 부드러운 스크롤 애니메이션 필수 */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

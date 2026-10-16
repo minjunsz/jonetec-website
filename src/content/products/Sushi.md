@@ -1,7 +1,7 @@
 ---
 category: "플랜트 제어 시스템"
-name: "무선 진동 센서(스시 센서)"
-summary: "LoRaWAN 기반 진동 및 온도 모니터링 무선 센서 (Sushi Sensor)"
+name: "무선 진동 센서 (Sushi Sensor)"
+summary: "LoRaWAN 기반 진동 및 온도 모니터링 무선 센서"
 image: "/images/products/yokogawa-wireless-sensor.png"
 description: |
   LoRaWAN 통신 규격을 사용하여 회전기기의 진동(가속도, 속도)과 표면 온도를 무선으로 장거리 측정하는 스마트 센서입니다.
