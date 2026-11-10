@@ -1,0 +1,163 @@
+---
+// src/pages/qr-info.astro
+import Layout from "../layouts/Layout.astro";
+import companyInfo from "../data/company_info.yaml";
+
+// QR 페이지에 넣을 첨부파일 목록 (필요에 따라 수정하세요)
+const attachments = [
+  {
+    filename: "제이원텍(주) 제품 종합 브로셔",
+    fileUrl: "https://attachments.jonetec.co.kr/IEP/IEP_%EC%A0%9C%ED%92%88_%EB%B8%8C%EB%A1%9C%EC%85%94.pdf",
+  },
+  {
+    filename: "폭발방지시스템 소개 자료 (PDF)",
+    fileUrl: "https://attachments.jonetec.co.kr/IEP/Introduction_to_IEP_Safety_%EC%A0%9C%EC%9D%B4%EC%9B%90%ED%85%8D_2022.pdf",
+  },
+];
+---
+
+<!-- noindex={true} 설정으로 검색엔진 노출을 차단합니다 -->
+<Layout
+  title="제이원텍(주) | 스페셜 안내"
+  description="제이원텍(주) 솔루션 안내 페이지"
+  noindex={true}
+>
+  <div class="container mx-auto px-4 py-12 md:py-16 max-w-4xl">
+    <!-- 상단 타이틀 영역 -->
+    <div class="text-center mb-12">
+      <div
+        class="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4"
+      >
+        SPECIAL GUIDE
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold mb-4 break-keep leading-tight">
+        산업 현장의 완벽한 안전 솔루션<br />
+        <span class="text-primary">제이원텍(주)</span>이 함께합니다
+      </h1>
+      <p class="text-base-content/60 max-w-xl mx-auto break-keep">
+        QR코드를 통해 접속하신 고객님을 위한 전용 안내 페이지입니다.
+      </p>
+    </div>
+
+    <!-- 메인 소개 카드 -->
+    <div
+      class="card bg-base-100 shadow-xl border border-base-300 overflow-hidden mb-8"
+    >
+      <!-- 대표 이미지 (원하는 이미지 경로로 변경 가능) -->
+      <figure class="max-h-80 overflow-hidden bg-base-200">
+        <img
+          src="/images/hero/hero-bg.png"
+          alt="제이원텍 솔루션"
+          class="w-full h-full object-cover"
+        />
+      </figure>
+
+      <div class="card-body p-6 md:p-10">
+        <div class="badge badge-primary badge-outline mb-2">핵심 솔루션 안내</div>
+        <h2 class="card-title text-2xl md:text-3xl font-bold mb-4">
+          안전을 넘어선 최고의 효율성
+        </h2>
+
+        <div class="prose max-w-none text-base-content/80 leading-relaxed break-keep">
+          <p>
+            제이원텍(주)은 30년간 다져진 현장 실무 능력을 기반으로 소방 설비, 분진 폭발 방지 시스템(IEP), 플랜트 제어 계측 시스템(Yokogawa) 등 산업 현장에 최적화된 안전 솔루션을 설계 및 공급하고 있습니다.
+          </p>
+          <ul>
+            <li><strong>소방 제품:</strong> 할로겐화합물 소화설비(AnyFire), 포 소화설비(FireDos)</li>
+            <li><strong>폭발 방지 솔루션:</strong> 분진 폭발 방출·차단·억제 시스템(IEP Technologies)</li>
+            <li><strong>플랜트 제어 시스템:</strong> 광섬유 온도센서(DTS), 무선 진동 센서(Sushi Sensor), 필드계기 및 분석기</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 자료 다운로드 섹션 -->
+    {
+      attachments.length > 0 && (
+        <div class="card bg-base-200/70 border border-base-300 shadow-sm mb-8">
+          <div class="card-body p-6 md:p-8">
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 text-primary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"
+                />
+              </svg>
+              관련 카탈로그 및 기술 자료 다운로드
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {attachments.map((file) => (
+                <a
+                  href={file.fileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex items-center gap-3 p-4 bg-base-100 rounded-xl border border-base-300 hover:border-primary hover:shadow-md transition-all duration-200"
+                >
+                  <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 text-primary"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-base-content truncate group-hover:text-primary transition-colors">
+                      {file.filename}
+                    </p>
+                    <p class="text-xs text-base-content/50">터치하여 PDF 보기</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    <!-- 빠른 문의 및 연락처 (모바일에서 터치 시 바로 전화/메일 연결) -->
+    <div class="card bg-gradient-to-br from-primary to-primary/80 text-primary-content shadow-xl">
+      <div class="card-body p-6 md:p-8 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <h3 class="text-2xl font-bold mb-2">도입 및 기술 상담 문의</h3>
+          <p class="text-primary-content/80 text-sm">
+            현장 맞춤형 설계부터 견적 문의까지 전문 엔지니어가 신속하게 안내해 드립니다.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+          <a
+            href={`tel:${companyInfo.tel}`}
+            class="btn bg-white text-primary hover:bg-base-200 border-none gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            전화 연결 ({companyInfo.tel})
+          </a>
+          <a
+            href="/products"
+            class="btn btn-outline border-white text-white hover:bg-white/20 hover:border-white"
+          >
+            전체 제품 보기
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
