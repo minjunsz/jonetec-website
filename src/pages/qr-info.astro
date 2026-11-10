@@ -1,26 +1,28 @@
 ---
-// src/pages/qr-info.astro
+// src/pages/qr-info.astro (만드신 QR 페이지 파일에 덮어쓰기 하세요)
 import Layout from "../layouts/Layout.astro";
-import companyInfo from "../data/company_info.yaml";
 
-// QR 페이지에 넣을 첨부파일 목록 (필요에 따라 수정하세요)
+// 첨부파일 목록
 const attachments = [
   {
-    filename: "제이원텍(주) 제품 종합 브로셔",
+    filename: "분진 폭발 방지 시스템 종합 브로셔",
     fileUrl: "https://attachments.jonetec.co.kr/IEP/IEP_%EC%A0%9C%ED%92%88_%EB%B8%8C%EB%A1%9C%EC%85%94.pdf",
   },
   {
-    filename: "폭발방지시스템 소개 자료 (PDF)",
+    filename: "분진 폭발 방지 시스템 소개 발표자료",
     fileUrl: "https://attachments.jonetec.co.kr/IEP/Introduction_to_IEP_Safety_%EC%A0%9C%EC%9D%B4%EC%9B%90%ED%85%8D_2022.pdf",
+  },
+  {
+    filename: "폭발억제장치의 설치에 관한 기술지침 - 안전보건공단",
+    fileUrl: "https://attachments.jonetec.co.kr/IEP/D-16-2012_%ED%8F%AD%EB%B0%9C%EC%96%B5%EC%A0%9C%EC%9E%A5%EC%B9%98%EC%9D%98_%EC%84%A4%EC%B9%98_%EA%B8%B0%EC%88%A0%EC%A7%80%EC%B9%A8.pdf",
   },
 ];
 ---
 
-<!-- noindex={true} 설정으로 검색엔진 노출을 차단합니다 -->
 <Layout
-  title="제이원텍(주) | 스페셜 안내"
-  description="제이원텍(주) 솔루션 안내 페이지"
-  noindex={true}
+  title="제이원텍(주) | 분진 폭발 방지 솔루션"
+  description="가연성 분진과 하이브리드 분진에 의한 폭발을 완화, 차단 및 억제하는 종합 안전 시스템 안내"
+  image="/images/products/iep-thumbnail.png"
 >
   <div class="container mx-auto px-4 py-12 md:py-16 max-w-4xl">
     <!-- 상단 타이틀 영역 -->
@@ -28,58 +30,170 @@ const attachments = [
       <div
         class="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4"
       >
-        SPECIAL GUIDE
+        SAFETY SEMINAR
       </div>
       <h1 class="text-3xl md:text-5xl font-bold mb-4 break-keep leading-tight">
-        산업 현장의 완벽한 안전 솔루션<br />
-        <span class="text-primary">제이원텍(주)</span>이 함께합니다
+        <span class="text-primary">분진 폭발 방지</span> 솔루션
       </h1>
-      <p class="text-base-content/60 max-w-xl mx-auto break-keep">
-        QR코드를 통해 접속하신 고객님을 위한 전용 안내 페이지입니다.
+      <p class="text-base-content/60 max-w-2xl mx-auto break-keep">
+        공정 내 가연성 및 하이브리드 분진으로 인한 폭발 위험을 예방하고, 폭발 발생 시 설비와 인명을 보호하기 위한 핵심 방호 기술을 안내합니다.
       </p>
     </div>
 
-    <!-- 메인 소개 카드 -->
-    <div
-      class="card bg-base-100 shadow-xl border border-base-300 overflow-hidden mb-8"
-    >
-      <!-- 대표 이미지 (원하는 이미지 경로로 변경 가능) -->
-      <figure class="max-h-80 overflow-hidden bg-base-200">
-        <img
-          src="/images/hero/hero-bg.png"
-          alt="제이원텍 솔루션"
-          class="w-full h-full object-cover"
-        />
-      </figure>
-
+    <!-- 1. 분진폭발이란? (개념 및 메커니즘) -->
+    <div class="card bg-base-100 shadow-xl border border-base-300 overflow-hidden mb-10">
       <div class="card-body p-6 md:p-10">
-        <div class="badge badge-primary badge-outline mb-2">핵심 솔루션 안내</div>
-        <h2 class="card-title text-2xl md:text-3xl font-bold mb-4">
-          안전을 넘어선 최고의 효율성
-        </h2>
+        <div class="badge badge-error badge-outline mb-2 font-semibold">폭발 메커니즘</div>
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">분진 폭발이란?</h2>
+        <p class="text-base-content/80 leading-relaxed break-keep mb-6">
+          일반적인 화재가 발생하는 필수 3요소인 <strong>산소, 열, 가연물</strong>의 조합에 더해, 분진이 공기 중에 일정 농도로 흩날리는 <strong>부유 상태</strong>와 설비 내부라는 <strong>밀폐·가둠 상태</strong>가 추가될 때 급격한 압력 상승과 화염을 동반한 분진 폭발이 발생합니다.
+        </p>
 
-        <div class="prose max-w-none text-base-content/80 leading-relaxed break-keep">
-          <p>
-            제이원텍(주)은 30년간 다져진 현장 실무 능력을 기반으로 소방 설비, 분진 폭발 방지 시스템(IEP), 플랜트 제어 계측 시스템(Yokogawa) 등 산업 현장에 최적화된 안전 솔루션을 설계 및 공급하고 있습니다.
-          </p>
-          <ul>
-            <li><strong>소방 제품:</strong> 할로겐화합물 소화설비(AnyFire), 포 소화설비(FireDos)</li>
-            <li><strong>폭발 방지 솔루션:</strong> 분진 폭발 방출·차단·억제 시스템(IEP Technologies)</li>
-            <li><strong>플랜트 제어 시스템:</strong> 광섬유 온도센서(DTS), 무선 진동 센서(Sushi Sensor), 필드계기 및 분석기</li>
-          </ul>
+        <!-- 연소와 폭발의 차이 이미지 -->
+        <figure class="mt-2 bg-base-200/50 p-4 rounded-xl border border-base-200 flex flex-col items-center">
+          <img
+            src="/images/products/iep-explosion.png"
+            alt="연소와 폭발의 차이"
+            class="mx-auto rounded-lg shadow-sm max-h-80 object-contain"
+          />
+          <figcaption class="mt-3 text-sm font-medium text-base-content/70 text-center">
+            연소와 폭발의 차이
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- 2. 핵심 3대 방호 솔루션 -->
+    <div class="mb-10">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl md:text-3xl font-bold mb-2">분진 폭발 방지 시스템 구성</h2>
+        <p class="text-base-content/60 text-sm md:text-base break-keep">
+          폭발 직전에 감지하여 진압하며, 폭발 발생 시에는 이를 안전하게 방출하고 추가 확산을 차단하는 종합 방호 체계입니다. 가연성 분진 및 고체 미립자를 취급하는 집진기, 사이클론, 건조기, 사일로 및 이송 배관 등 모든 공정에 적용됩니다.
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        <!-- 솔루션 1: 폭발 방출 (Venting) -->
+        <div class="card bg-base-100 shadow-lg border border-base-300 overflow-hidden">
+          <div class="card-body p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
+            <div class="w-full md:w-2/5 shrink-0">
+              <img
+                src="/images/products/iep-explosion-vent.png"
+                alt="폭발 방출 시스템"
+                class="rounded-xl shadow-sm w-full object-cover"
+              />
+            </div>
+            <div class="flex-1">
+              <div class="badge badge-primary mb-2">01. 완화 (Venting)</div>
+              <h3 class="text-xl font-bold mb-2">
+                폭발 방출 시스템 (Venting)
+              </h3>
+              <p class="text-base-content/80 text-sm md:text-base leading-relaxed break-keep">
+                설비 내부 압력이 설정된 한계치에 도달하면 파열판이 개방되어 화구와 폭발성 압력을 안전한 외부 지역으로 방출시킵니다. 옥내 설치 등으로 외부 방출이 불가할 시에는 <strong>무화염 방출 시스템</strong>을 통해 화염을 진화하고 압력을 안전하게 경감시킵니다.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 솔루션 2: 폭발 차단 (Isolation) -->
+        <div class="card bg-base-100 shadow-lg border border-base-300 overflow-hidden">
+          <div class="card-body p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
+            <div class="w-full md:w-2/5 shrink-0">
+              <img
+                src="/images/products/iep-isolation.png"
+                alt="폭발 차단 시스템"
+                class="rounded-xl shadow-sm w-full object-cover"
+              />
+            </div>
+            <div class="flex-1">
+              <div class="badge badge-primary mb-2">02. 차단 (Isolation)</div>
+              <h3 class="text-xl font-bold mb-2">
+                폭발 차단 시스템 (Isolation)
+              </h3>
+              <p class="text-base-content/80 text-sm md:text-base leading-relaxed break-keep">
+                공정 내에 상호 연결된 설비 및 배관 사이로 화염과 폭연이 이동하여 발생하는 치명적인 2차 연쇄 폭발 위험을 물리적·화학적으로 즉시 차단하는 장치입니다.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 솔루션 3: 폭발 억제 (Suppression) -->
+        <div class="card bg-base-100 shadow-lg border border-base-300 overflow-hidden">
+          <div class="card-body p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
+            <div class="w-full md:w-2/5 shrink-0">
+              <img
+                src="/images/products/iep-suppressor.png"
+                alt="폭발 억제 시스템"
+                class="rounded-xl shadow-sm w-full object-cover"
+              />
+            </div>
+            <div class="flex-1">
+              <div class="badge badge-primary mb-2">03. 억제 (Suppression)</div>
+              <h3 class="text-xl font-bold mb-2">
+                폭발 억제 시스템 (Suppression)
+              </h3>
+              <p class="text-base-content/80 text-sm md:text-base leading-relaxed break-keep">
+                폭발 초기 압력이 발생하는 것을 아주 짧은 순간에 감지하고, 설비가 파괴 압력에 도달하기 전에 밀폐 공간 내부로 폭발 진압제를 고속 분사하여 화염을 초기에 소멸시키는 능동형 시스템입니다.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- 자료 다운로드 섹션 -->
-    {
-      attachments.length > 0 && (
-        <div class="card bg-base-200/70 border border-base-300 shadow-sm mb-8">
-          <div class="card-body p-6 md:p-8">
-            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+    <!-- 3. 기술 자료 다운로드 섹션 -->
+    <div class="card bg-base-200/70 border border-base-300 shadow-sm">
+      <div class="card-body p-6 md:p-8">
+        <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-primary"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"
+            />
+          </svg>
+          관련 기술 자료 다운로드
+        </h3>
+        <div class="grid grid-cols-1 gap-3">
+          {attachments.map((file) => (
+            <a
+              href={file.fileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center gap-3 p-4 bg-base-100 rounded-xl border border-base-300 hover:border-primary hover:shadow-md transition-all duration-200"
+            >
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 text-primary"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm md:text-base font-semibold text-base-content truncate group-hover:text-primary transition-colors">
+                  {file.filename}
+                </p>
+                <p class="text-xs text-base-content/50">클릭하여 파일 열기 및 다운로드</p>
+              </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 text-primary"
+                class="h-5 w-5 text-base-content/30 group-hover:text-primary group-hover:translate-y-0.5 transition-all shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -88,76 +202,16 @@ const attachments = [
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                 />
               </svg>
-              관련 카탈로그 및 기술 자료 다운로드
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {attachments.map((file) => (
-                <a
-                  href={file.fileUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="group flex items-center gap-3 p-4 bg-base-100 rounded-xl border border-base-300 hover:border-primary hover:shadow-md transition-all duration-200"
-                >
-                  <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5 text-primary"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                      />
-                    </svg>
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold text-base-content truncate group-hover:text-primary transition-colors">
-                      {file.filename}
-                    </p>
-                    <p class="text-xs text-base-content/50">터치하여 PDF 보기</p>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      )
-    }
-
-    <!-- 빠른 문의 및 연락처 (모바일에서 터치 시 바로 전화/메일 연결) -->
-    <div class="card bg-gradient-to-br from-primary to-primary/80 text-primary-content shadow-xl">
-      <div class="card-body p-6 md:p-8 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
-        <div>
-          <h3 class="text-2xl font-bold mb-2">도입 및 기술 상담 문의</h3>
-          <p class="text-primary-content/80 text-sm">
-            현장 맞춤형 설계부터 견적 문의까지 전문 엔지니어가 신속하게 안내해 드립니다.
-          </p>
-        </div>
-        <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-          <a
-            href={`tel:${companyInfo.tel}`}
-            class="btn bg-white text-primary hover:bg-base-200 border-none gap-2"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-            전화 연결 ({companyInfo.tel})
-          </a>
-          <a
-            href="/products"
-            class="btn btn-outline border-white text-white hover:bg-white/20 hover:border-white"
-          >
-            전체 제품 보기
-          </a>
+            </a>
+          ))}
         </div>
       </div>
     </div>
   </div>
+
+  <!-- 4. 메인화면 하단과 동일한 회사 소개 섹션 (WHY J-ONETEC) -->
+  
 </Layout>
