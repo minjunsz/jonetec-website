@@ -1,19 +1,19 @@
 ---
-// src/pages/qr-info.astro (만드신 QR 페이지 파일에 덮어쓰기 하세요)
+// src/pages/qr-info.astro
 import Layout from "../layouts/Layout.astro";
 
 // 첨부파일 목록
 const attachments = [
   {
-    filename: "분진 폭발 방지 시스템 종합 브로셔",
+    filename: "분진 폭발 방지 시스템 브로셔",
     fileUrl: "https://attachments.jonetec.co.kr/IEP/IEP_%EC%A0%9C%ED%92%88_%EB%B8%8C%EB%A1%9C%EC%85%94.pdf",
   },
   {
-    filename: "분진 폭발 방지 시스템 소개 발표자료",
+    filename: "분진 폭발 방지 시스템 소개 PT자료",
     fileUrl: "https://attachments.jonetec.co.kr/IEP/Introduction_to_IEP_Safety_%EC%A0%9C%EC%9D%B4%EC%9B%90%ED%85%8D_2022.pdf",
   },
   {
-    filename: "폭발억제장치의 설치에 관한 기술지침 - 안전보건공단",
+    filename: "폭발억제장치의 설치에 관한 기술지침 - KOSHA Guide",
     fileUrl: "https://attachments.jonetec.co.kr/IEP/D-16-2012_%ED%8F%AD%EB%B0%9C%EC%96%B5%EC%A0%9C%EC%9E%A5%EC%B9%98%EC%9D%98_%EC%84%A4%EC%B9%98_%EA%B8%B0%EC%88%A0%EC%A7%80%EC%B9%A8.pdf",
   },
 ];
@@ -30,7 +30,7 @@ const attachments = [
       <div
         class="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4"
       >
-        SAFETY SEMINAR
+        안전 솔루션
       </div>
       <h1 class="text-3xl md:text-5xl font-bold mb-4 break-keep leading-tight">
         <span class="text-primary">분진 폭발 방지</span> 솔루션
@@ -40,21 +40,20 @@ const attachments = [
       </p>
     </div>
 
-    <!-- 1. 분진폭발이란? (개념 및 메커니즘) -->
+    <!-- 1. 분진폭발이란? (단독 카드) -->
     <div class="card bg-base-100 shadow-xl border border-base-300 overflow-hidden mb-10">
       <div class="card-body p-6 md:p-10">
-        <div class="badge badge-error badge-outline mb-2 font-semibold">폭발 메커니즘</div>
-        <h2 class="text-2xl md:text-3xl font-bold mb-4">분진 폭발이란?</h2>
-        <p class="text-base-content/80 leading-relaxed break-keep mb-6">
+        <h2 class="text-xl md:text-3xl font-bold mb-4">분진 폭발이란?</h2>
+        <p class="text-base-content/80 text-lg leading-relaxed break-keep mb-6">
           일반적인 화재가 발생하는 필수 3요소인 <strong>산소, 열, 가연물</strong>의 조합에 더해, 분진이 공기 중에 일정 농도로 흩날리는 <strong>부유 상태</strong>와 설비 내부라는 <strong>밀폐·가둠 상태</strong>가 추가될 때 급격한 압력 상승과 화염을 동반한 분진 폭발이 발생합니다.
         </p>
 
-        <!-- 연소와 폭발의 차이 이미지 -->
-        <figure class="mt-2 bg-base-200/50 p-4 rounded-xl border border-base-200 flex flex-col items-center">
+        <!-- 연소와 폭발의 차이 이미지 (회색 배경 제거됨) -->
+        <figure class="mt-2 p-2 flex flex-col items-center">
           <img
             src="/images/products/iep-explosion.png"
             alt="연소와 폭발의 차이"
-            class="mx-auto rounded-lg shadow-sm max-h-80 object-contain"
+            class="mx-auto rounded-lg max-h-80 object-contain"
           />
           <figcaption class="mt-3 text-sm font-medium text-base-content/70 text-center">
             연소와 폭발의 차이
@@ -63,76 +62,71 @@ const attachments = [
       </div>
     </div>
 
-    <!-- 2. 핵심 3대 방호 솔루션 -->
-    <div class="mb-10">
-      <div class="text-center mb-8">
-        <h2 class="text-2xl md:text-3xl font-bold mb-2">분진 폭발 방지 시스템 구성</h2>
-        <p class="text-base-content/60 text-sm md:text-base break-keep">
-          폭발 직전에 감지하여 진압하며, 폭발 발생 시에는 이를 안전하게 방출하고 추가 확산을 차단하는 종합 방호 체계입니다. 가연성 분진 및 고체 미립자를 취급하는 집진기, 사이클론, 건조기, 사일로 및 이송 배관 등 모든 공정에 적용됩니다.
-        </p>
-      </div>
+    <!-- 2. 분진 폭발 방지 시스템 (전체 하나의 카드로 통합 & 하위 카드 제거) -->
+    <div class="card bg-base-100 shadow-xl border border-base-300 overflow-hidden mb-10">
+      <div class="card-body p-6 md:p-10">
+        <!-- 섹션 헤더 -->
+        <div class="mb-6 pb-6 border-b border-base-200">
+          <h2 class="text-xl md:text-3xl font-bold mb-4">분진 폭발 방지 시스템</h2>
+          <p class="text-base-content/80 text-lg leading-relaxed break-keep">
+            폭발 직전에 감지하여 진압하며, 폭발 발생 시에는 이를 안전하게 방출하고 추가 확산을 차단하는 종합 방호 체계입니다. 가연성 분진 및 고체 미립자를 취급하는 집진기, 사이클론, 건조기, 사일로 및 이송 배관 등 모든 공정에 적용됩니다.
+          </p>
+        </div>
 
-      <div class="space-y-6">
-        <!-- 솔루션 1: 폭발 방출 (Venting) -->
-        <div class="card bg-base-100 shadow-lg border border-base-300 overflow-hidden">
-          <div class="card-body p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
-            <div class="w-full md:w-2/5 shrink-0">
+        <!-- 하위 섹션 목록 (카드 없이 구분선으로만 연결) -->
+        <div class="divide-y divide-base-200">
+          <!-- 하위 1: 폭발 방출 -->
+          <div class="py-6 first:pt-2 flex flex-col md:flex-row gap-6 items-center">
+            <div class="w-full md:w-1/3 shrink-0 flex items-center justify-center">
               <img
                 src="/images/products/iep-explosion-vent.png"
                 alt="폭발 방출 시스템"
-                class="rounded-xl shadow-sm w-full object-cover"
+                class="rounded-lg max-h-44 w-auto object-contain"
               />
             </div>
             <div class="flex-1">
-              <div class="badge badge-primary mb-2">01. 완화 (Venting)</div>
               <h3 class="text-xl font-bold mb-2">
-                폭발 방출 시스템 (Venting)
+                폭발 방출 시스템
               </h3>
-              <p class="text-base-content/80 text-sm md:text-base leading-relaxed break-keep">
+              <p class="text-base-content/80 text-base leading-relaxed break-keep">
                 설비 내부 압력이 설정된 한계치에 도달하면 파열판이 개방되어 화구와 폭발성 압력을 안전한 외부 지역으로 방출시킵니다. 옥내 설치 등으로 외부 방출이 불가할 시에는 <strong>무화염 방출 시스템</strong>을 통해 화염을 진화하고 압력을 안전하게 경감시킵니다.
               </p>
             </div>
           </div>
-        </div>
 
-        <!-- 솔루션 2: 폭발 차단 (Isolation) -->
-        <div class="card bg-base-100 shadow-lg border border-base-300 overflow-hidden">
-          <div class="card-body p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
-            <div class="w-full md:w-2/5 shrink-0">
+          <!-- 하위 2: 폭발 차단 -->
+          <div class="py-6 flex flex-col md:flex-row gap-6 items-center">
+            <div class="w-full md:w-1/3 shrink-0 flex items-center justify-center">
               <img
                 src="/images/products/iep-isolation.png"
                 alt="폭발 차단 시스템"
-                class="rounded-xl shadow-sm w-full object-cover"
+                class="rounded-lg max-h-44 w-auto object-contain"
               />
             </div>
             <div class="flex-1">
-              <div class="badge badge-primary mb-2">02. 차단 (Isolation)</div>
               <h3 class="text-xl font-bold mb-2">
-                폭발 차단 시스템 (Isolation)
+                폭발 차단 시스템
               </h3>
-              <p class="text-base-content/80 text-sm md:text-base leading-relaxed break-keep">
+              <p class="text-base-content/80 text-base leading-relaxed break-keep">
                 공정 내에 상호 연결된 설비 및 배관 사이로 화염과 폭연이 이동하여 발생하는 치명적인 2차 연쇄 폭발 위험을 물리적·화학적으로 즉시 차단하는 장치입니다.
               </p>
             </div>
           </div>
-        </div>
 
-        <!-- 솔루션 3: 폭발 억제 (Suppression) -->
-        <div class="card bg-base-100 shadow-lg border border-base-300 overflow-hidden">
-          <div class="card-body p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
-            <div class="w-full md:w-2/5 shrink-0">
+          <!-- 하위 3: 폭발 억제 -->
+          <div class="py-6 last:pb-0 flex flex-col md:flex-row gap-6 items-center">
+            <div class="w-full md:w-1/3 shrink-0 flex items-center justify-center">
               <img
                 src="/images/products/iep-suppressor.png"
                 alt="폭발 억제 시스템"
-                class="rounded-xl shadow-sm w-full object-cover"
+                class="rounded-lg max-h-44 w-auto object-contain"
               />
             </div>
             <div class="flex-1">
-              <div class="badge badge-primary mb-2">03. 억제 (Suppression)</div>
               <h3 class="text-xl font-bold mb-2">
-                폭발 억제 시스템 (Suppression)
+                폭발 억제 시스템
               </h3>
-              <p class="text-base-content/80 text-sm md:text-base leading-relaxed break-keep">
+              <p class="text-base-content/80 text-base leading-relaxed break-keep">
                 폭발 초기 압력이 발생하는 것을 아주 짧은 순간에 감지하고, 설비가 파괴 압력에 도달하기 전에 밀폐 공간 내부로 폭발 진압제를 고속 분사하여 화염을 초기에 소멸시키는 능동형 시스템입니다.
               </p>
             </div>
@@ -211,7 +205,4 @@ const attachments = [
       </div>
     </div>
   </div>
-
-  <!-- 4. 메인화면 하단과 동일한 회사 소개 섹션 (WHY J-ONETEC) -->
-  
 </Layout>
